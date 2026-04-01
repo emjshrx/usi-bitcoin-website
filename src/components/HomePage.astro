@@ -18,7 +18,6 @@ const asset = withBase;
 const {
   brand,
   report,
-  nextEvent,
   cosaFacciamo,
   chiSiamo,
   missione,
@@ -28,50 +27,43 @@ const {
   joinTeam,
   partners,
   team,
-  association,
-  images,
   seo,
   ui,
 } = site;
 
 const showReport = Boolean(report.url?.trim());
-const showNextEvent = Boolean(
-  nextEvent.lumaUrl?.trim() || nextEvent.title?.trim() || nextEvent.description?.trim(),
-);
 const showCosaFacciamo =
   cosaFacciamo.events.length > 0 || Boolean(cosaFacciamo.intro?.trim());
 const showSocial = social.links.length > 0;
 const showJoinTeam = Boolean(joinTeam.url?.trim());
 const showPartners = partners.items.length > 0;
 const showTeam = team.members.length > 0;
-const showAssociation = Boolean(association.formUrl?.trim());
-const showTopRow = showReport || showNextEvent;
 ---
 
 <Layout title={brand.title} description={seo.description} lang={lang}>
-  <header class="relative overflow-hidden bg-card px-6 py-12 md:py-16">
+  <header class="relative overflow-hidden bg-card px-6 py-6 md:py-8">
     <div class="absolute right-4 top-4 z-20 md:right-6 md:top-6">
       <LanguageToggle lang={lang} label={ui.languageSwitchLabel} />
     </div>
     <div
-      class="hero-diagonal-tl pointer-events-none absolute left-0 top-0 h-48 w-64 bg-accent md:h-64 md:w-96"
+      class="hero-diagonal-tl pointer-events-none absolute left-0 top-0 h-32 w-48 bg-accent md:h-40 md:w-72"
       aria-hidden="true"
     >
     </div>
     <div
-      class="hero-diagonal-br pointer-events-none absolute bottom-0 right-0 h-56 w-72 bg-accent md:h-72 md:w-[28rem]"
+      class="hero-diagonal-br pointer-events-none absolute bottom-0 right-0 h-36 w-56 bg-accent md:h-48 md:w-80"
       aria-hidden="true"
     >
     </div>
     <div class="relative mx-auto flex max-w-lg flex-col items-center text-center">
       <img
-        src={asset(images.logo)}
+        src={asset(site.images.logo)}
         alt={ui.logoAlt}
-        width="120"
-        height="120"
-        class="mb-5 h-[7.5rem] w-[7.5rem] object-contain"
+        width="96"
+        height="96"
+        class="mb-4 h-20 w-20 object-contain md:h-24 md:w-24"
       />
-      <h1 class="text-2xl font-bold tracking-tight md:text-3xl">{brand.title}</h1>
+      <h1 class="text-xl font-bold tracking-tight md:text-2xl">{brand.title}</h1>
     </div>
   </header>
 
@@ -82,6 +74,53 @@ const showTopRow = showReport || showNextEvent;
         aria-label={`${brand.title} — ${chiSiamo.title}`}
       >
         <div class="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-12 lg:gap-8 lg:items-stretch">
+          <div class="flex flex-col gap-4 lg:col-span-4">
+            {
+              showReport ? (
+                <section
+                  id="report"
+                  class="scroll-mt-6 flex flex-1 flex-col rounded-sm border border-ink/10 bg-card p-6 shadow-card md:p-7"
+                  aria-labelledby="report-heading"
+                >
+                  <h2 id="report-heading" class="mb-3 text-lg font-bold md:text-xl">
+                    {report.sectionTitle}
+                  </h2>
+                  {
+                    report.coverImage?.trim() ? (
+                      <a
+                        href={report.url}
+                        class="mb-4 block overflow-hidden rounded-sm border border-ink/10 shadow-sm transition hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${report.buttonLabel} — PDF`}
+                      >
+                        <img
+                          src={asset(report.coverImage.trim())}
+                          alt={ui.reportCoverAlt}
+                          width="420"
+                          height="594"
+                          class="aspect-[210/297] w-full object-cover object-top"
+                          loading="lazy"
+                        />
+                      </a>
+                    ) : null
+                  }
+                  <p class="mb-5 flex-1 text-[0.95rem] leading-relaxed text-ink/85">{report.description}</p>
+                  <a
+                    href={report.url}
+                    class="inline-flex min-h-[44px] items-center justify-center rounded-sm border-2 border-ink bg-ink px-5 py-3 text-sm font-semibold text-card transition hover:bg-card hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {report.buttonLabel}
+                  </a>
+                </section>
+              ) : (
+                <div class="hidden lg:block" aria-hidden="true" />
+              )
+            }
+          </div>
+
           <div class="flex flex-col gap-4 lg:col-span-4">
             <ContentCard title={chiSiamo.title}>
               <p>{chiSiamo.body}</p>
@@ -94,136 +133,65 @@ const showTopRow = showReport || showNextEvent;
             </ContentCard>
           </div>
 
-          <div class="flex min-h-0 flex-col lg:col-span-4">
-            <section
-              class="flex min-h-0 flex-1 flex-col rounded-sm border border-ink/10 bg-card p-6 shadow-card md:p-7"
-            >
-              <h2 class="mb-4 text-xl font-bold italic tracking-tight">{join.title}</h2>
-              <ul class="mb-6 flex-1 space-y-2 text-[0.95rem] font-medium leading-relaxed">
-                {join.bullets.map((item) => (
-                  <li class="flex gap-2">
-                    <span class="text-ink/40" aria-hidden="true">—</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p class="text-lg font-bold italic leading-snug">
-                {join.tagline.before}
-                <span class="tracking-wide">{join.tagline.emphasis}</span>
-                {join.tagline.after}
-              </p>
-            </section>
-          </div>
-
           <div class="flex flex-col gap-5 lg:col-span-4">
-            <div class="overflow-hidden rounded-sm border border-ink/10 bg-card shadow-card">
-              <img
-                src={asset(images.usiBuilding)}
-                alt={ui.usiBuildingAlt}
-                width="800"
-                height="500"
-                class="tear-bottom aspect-[4/3] w-full max-h-56 object-cover object-center sm:max-h-64 md:max-h-72 lg:max-h-none"
-                loading="lazy"
-              />
-            </div>
+            {
+              showSocial ? (
+                <section
+                  id="social"
+                  class="scroll-mt-6 rounded-sm border border-ink/10 bg-card p-6 shadow-card md:p-7"
+                  aria-label={social.sectionTitle}
+                >
+                  <p class="mb-1 text-sm font-semibold uppercase tracking-wide text-ink/70">
+                    {social.sectionTitle}
+                  </p>
+                  {social.intro ? <p class="mb-4 text-[0.9rem] text-ink/75">{social.intro}</p> : null}
+                  <ul class="flex flex-wrap gap-2 sm:gap-3">
+                    {social.links.map((link) => (
+                      <li>
+                        <SocialIconLink url={link.url} label={link.label} />
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null
+            }
             <section class="rounded-sm border border-ink/10 bg-card p-6 shadow-card md:p-7">
-              <p class="mb-5 text-sm font-semibold uppercase tracking-wide text-ink/70">
-                {ui.contactsHeading}
-              </p>
+              <h2 class="mb-4 text-xl font-bold italic tracking-tight">{join.title}</h2>
               <div
-                class="flex flex-col items-center gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-8"
+                class="flex flex-col items-stretch gap-4"
               >
                 {join.qrImage ? (
-                  <div class="flex shrink-0 justify-center sm:justify-start">
+                  <div class="flex justify-center">
                     <img
                       src={asset(join.qrImage)}
                       alt={ui.qrAlt}
                       width="200"
                       height="200"
-                      class="h-36 w-36 object-contain sm:h-40 sm:w-40"
+                      class="h-32 w-32 object-contain"
                       loading="lazy"
                     />
                   </div>
                 ) : null}
-                <div
-                  class={`flex w-full min-w-0 flex-col items-center gap-4 sm:items-stretch ${join.qrImage ? "sm:flex-1" : ""}`}
+                <a
+                  href={join.joinUrl}
+                  class="inline-flex min-h-[44px] w-full items-center justify-center rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-card transition hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                  rel="noopener noreferrer"
                 >
+                  {join.joinButtonLabel}
+                </a>
+                {join.email ? (
                   <a
-                    href={join.joinUrl}
-                    class="inline-flex min-h-[44px] w-full max-w-xs items-center justify-center rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-card transition hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:max-w-none"
-                    rel="noopener noreferrer"
+                    href={`mailto:${join.email}`}
+                    class="break-all text-center text-sm font-medium underline underline-offset-2"
                   >
-                    {join.joinButtonLabel}
+                    {join.email}
                   </a>
-                  {join.email ? (
-                    <a
-                      href={`mailto:${join.email}`}
-                      class="break-all text-center text-sm font-medium underline underline-offset-2 sm:text-left"
-                    >
-                      {join.email}
-                    </a>
-                  ) : null}
-                </div>
+                ) : null}
               </div>
             </section>
           </div>
         </div>
       </section>
-
-      {
-        showTopRow ? (
-          <div class="grid gap-6 md:grid-cols-2">
-            {showReport ? (
-              <section
-                id="report"
-                class="scroll-mt-6 rounded-sm bg-card p-6 shadow-card md:p-7"
-                aria-labelledby="report-heading"
-              >
-                <h2 id="report-heading" class="mb-3 text-lg font-bold md:text-xl">
-                  {report.sectionTitle}
-                </h2>
-                <p class="mb-5 text-[0.95rem] leading-relaxed text-ink/85">{report.description}</p>
-                <a
-                  href={report.url}
-                  class="inline-flex min-h-[44px] items-center justify-center rounded-sm border-2 border-ink bg-ink px-5 py-3 text-sm font-semibold text-card transition hover:bg-card hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {report.buttonLabel}
-                </a>
-              </section>
-            ) : null}
-            {showNextEvent ? (
-              <section
-                id="prossimo-evento"
-                class="scroll-mt-6 rounded-sm bg-card p-6 shadow-card md:p-7"
-                aria-labelledby="prossimo-evento-heading"
-              >
-                <h2 id="prossimo-evento-heading" class="mb-3 text-lg font-bold md:text-xl">
-                  {nextEvent.sectionTitle}
-                </h2>
-                {nextEvent.title ? <p class="text-base font-semibold">{nextEvent.title}</p> : null}
-                {nextEvent.datetime ? (
-                  <p class="mt-1 text-sm text-ink/70">{nextEvent.datetime}</p>
-                ) : null}
-                {nextEvent.description ? (
-                  <p class="mt-3 text-[0.95rem] leading-relaxed text-ink/85">{nextEvent.description}</p>
-                ) : null}
-                {nextEvent.lumaUrl?.trim() ? (
-                  <a
-                    href={nextEvent.lumaUrl}
-                    class="mt-5 inline-flex min-h-[44px] items-center justify-center rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-card transition hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {nextEvent.lumaButtonLabel}
-                  </a>
-                ) : null}
-              </section>
-            ) : null}
-          </div>
-        ) : null
-      }
 
       {
         showCosaFacciamo ? (
@@ -232,10 +200,22 @@ const showTopRow = showReport || showNextEvent;
             {cosaFacciamo.events.length > 0 ? (
               <ul class="grid gap-4 sm:grid-cols-2">
                 {cosaFacciamo.events.map((ev) => (
-                  <li class="rounded-sm border border-ink/10 bg-card p-5 shadow-card">
-                    <p class="font-bold">{ev.title}</p>
-                    {ev.date ? <p class="mt-1 text-sm text-ink/65">{ev.date}</p> : null}
-                    {ev.description ? <p class="mt-2 text-[0.9rem] leading-relaxed">{ev.description}</p> : null}
+                  <li class="overflow-hidden rounded-sm border border-ink/10 bg-card shadow-card">
+                    {ev.image?.trim() ? (
+                      <img
+                        src={asset(ev.image.trim())}
+                        alt=""
+                        width="640"
+                        height="360"
+                        class="tear-bottom aspect-video w-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : null}
+                    <div class="p-5">
+                      <p class="font-bold">{ev.title}</p>
+                      {ev.date ? <p class="mt-1 text-sm text-ink/65">{ev.date}</p> : null}
+                      {ev.description ? <p class="mt-2 text-[0.9rem] leading-relaxed">{ev.description}</p> : null}
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -256,14 +236,14 @@ const showTopRow = showReport || showNextEvent;
         showPartners ? (
           <SectionBlock id="partner" title={partners.sectionTitle}>
             {partners.intro ? <p class="mb-6 max-w-3xl">{partners.intro}</p> : null}
-            <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+            <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {partners.items.map((p) => (
-                <li class="flex flex-col items-start rounded-sm border border-ink/10 bg-card p-5 shadow-card">
+                <li class="flex flex-col items-center justify-center rounded-sm border border-ink/10 bg-card p-5 text-center shadow-card">
                   {p.logo?.trim() ? (
                     <img
                       src={asset(p.logo.trim())}
                       alt=""
-                      class="mb-3 h-12 w-auto max-w-full object-contain"
+                      class="mb-3 h-14 w-auto max-w-full object-contain"
                       loading="lazy"
                     />
                   ) : null}
@@ -288,16 +268,18 @@ const showTopRow = showReport || showNextEvent;
 
       {
         showJoinTeam ? (
-          <SectionBlock id="join-team" title={joinTeam.sectionTitle}>
-            <p class="mb-5 max-w-3xl">{joinTeam.description}</p>
-            <a
-              href={joinTeam.url}
-              class="inline-flex min-h-[44px] items-center justify-center rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-card transition hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {joinTeam.buttonLabel}
-            </a>
+          <SectionBlock id="join-club" title={joinTeam.sectionTitle} centerHeading>
+            <div class="mx-auto flex max-w-2xl flex-col items-center text-center">
+              <p class="mb-5">{joinTeam.description}</p>
+              <a
+                href={joinTeam.url}
+                class="inline-flex min-h-[44px] items-center justify-center rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-card transition hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {joinTeam.buttonLabel}
+              </a>
+            </div>
           </SectionBlock>
         ) : null
       }
@@ -305,20 +287,22 @@ const showTopRow = showReport || showNextEvent;
       {
         showTeam ? (
           <SectionBlock id="team" title={team.sectionTitle}>
-            {team.intro ? <p class="mb-8 max-w-3xl">{team.intro}</p> : null}
-            <ul class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {team.intro ? <p class="mb-8 mx-auto max-w-3xl text-center">{team.intro}</p> : null}
+            <ul class="mx-auto grid max-w-5xl grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-6 justify-items-center text-center">
               {team.members.map((m) => (
-                <li class="flex flex-col rounded-sm border border-ink/10 bg-card p-5 shadow-card">
+                <li class="flex w-full max-w-[7.5rem] flex-col items-center">
                   {m.photo?.trim() ? (
                     <img
                       src={asset(m.photo.trim())}
                       alt=""
-                      class="tear-bottom mb-4 aspect-square w-full object-cover"
+                      width="120"
+                      height="120"
+                      class="mb-2 h-20 w-20 rounded-full object-cover md:h-[4.5rem] md:w-[4.5rem]"
                       loading="lazy"
                     />
                   ) : (
                     <div
-                      class="tear-bottom mb-4 flex aspect-square w-full items-center justify-center bg-accent text-2xl font-bold text-ink/40"
+                      class="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-accent text-sm font-bold text-ink/40 md:h-[4.5rem] md:w-[4.5rem]"
                       aria-hidden="true"
                     >
                       {m.name
@@ -329,67 +313,28 @@ const showTopRow = showReport || showNextEvent;
                         .toUpperCase()}
                     </div>
                   )}
-                  <p class="font-bold">{m.name}</p>
-                  {m.role ? <p class="mt-1 text-sm font-medium text-ink/70">{m.role}</p> : null}
-                  {m.bio ? <p class="mt-2 text-[0.9rem] leading-relaxed text-ink/85">{m.bio}</p> : null}
+                  <p class="text-sm font-bold leading-tight">{m.name}</p>
+                  {m.role ? <p class="mt-1 text-xs font-medium text-ink/70">{m.role}</p> : null}
+                  {m.linkedinUrl?.trim() ? (
+                    <a
+                      href={m.linkedinUrl.trim()}
+                      class="mt-2 text-xs font-semibold underline underline-offset-2"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {ui.linkedinLabel}
+                    </a>
+                  ) : null}
                 </li>
               ))}
             </ul>
           </SectionBlock>
         ) : null
       }
-
-      {
-        showAssociation ? (
-          <SectionBlock id="associazione" title={association.sectionTitle}>
-            <p class="mb-5 max-w-3xl">{association.description}</p>
-            <a
-              href={association.formUrl}
-              class="inline-flex min-h-[44px] items-center justify-center rounded-sm border-2 border-ink bg-card px-5 py-3 text-sm font-semibold text-ink transition hover:bg-ink hover:text-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {association.buttonLabel}
-            </a>
-          </SectionBlock>
-        ) : null
-      }
-
-      {
-        images.footerStrip ? (
-          <div class="overflow-hidden rounded-sm shadow-card">
-            <img
-              src={asset(images.footerStrip)}
-              alt=""
-              width="1200"
-              height="400"
-              class="tear-top max-h-[min(420px,50vh)] w-full object-cover object-center"
-              loading="lazy"
-            />
-          </div>
-        ) : null
-      }
     </div>
   </main>
 
   <footer class="border-t border-ink/10 bg-card px-4 py-8 text-center text-sm text-ink/65 md:px-6">
-    <p class="font-semibold text-ink">{brand.title}</p>
-    <p class="mt-1">{brand.colophon}</p>
-    {
-      showSocial ? (
-        <div id="social" class="scroll-mt-6 mx-auto mt-8 max-w-2xl">
-          <p class="text-xs font-semibold uppercase tracking-wide text-ink/55">{social.sectionTitle}</p>
-          {social.intro ? <p class="mt-2 text-[0.9rem] leading-relaxed text-ink/70">{social.intro}</p> : null}
-          <ul class="mt-5 flex flex-wrap justify-center gap-2 sm:gap-3">
-            {social.links.map((link) => (
-              <li>
-                <SocialIconLink url={link.url} label={link.label} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null
-    }
-    <p class="mt-8 text-xs">{ui.footerNote}</p>
+    <p>{ui.copyrightNotice}</p>
   </footer>
 </Layout>

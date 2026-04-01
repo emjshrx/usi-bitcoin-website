@@ -1,18 +1,13 @@
 {
   "brand": {
-    "title": "Bitcoin USI Club",
-    "colophon": "Proof of Students Hub"
+    "title": "Bitcoin USI Club"
   },
   "images": {
-    "logo": "images/pos_hub_logo.jpeg",
-    "usiBuilding": "images/orientamento-correzione_obiettivo_-_9.jpg",
-    "footerStrip": "images/orientamento-correzione_obiettivo_-_9.jpg"
+    "logo": "images/pos_hub_logo.jpeg"
   },
   "report": {
-    "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
-  },
-  "nextEvent": {
-    "lumaUrl": "https://lu.ma/bitcoin-usi-sample-event"
+    "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+    "coverImage": "images/placeholders/report-cover.svg"
   },
   "join": {
     "joinUrl": "https://t.me/BitcoinUSI",
@@ -28,34 +23,44 @@
     ]
   },
   "joinTeam": {
-    "url": "https://example.com/forms/bitcoin-usi-join-team"
+    "url": "https://example.com/forms/bitcoin-usi-member"
   },
-  "association": {
-    "formUrl": "https://example.com/forms/bitcoin-usi-association"
+  "cosaFacciamo": {
+    "events": [
+      { "image": "images/placeholders/event-1.svg" },
+      { "image": "images/placeholders/event-2.svg" },
+      { "image": "images/placeholders/event-3.svg" },
+      { "image": "images/placeholders/event-4.svg" }
+    ]
   },
   "partners": {
     "items": [
       {
-        "url": "https://www.usi.ch",
-        "logo": "images/placeholders/partner-usi.svg"
+        "url": "https://example.com/partner/fizzy",
+        "logo": "images/partners/fizzy.svg"
       },
       {
-        "url": "https://example.com/partner/bitcoin-meetup-ticino",
-        "logo": "images/placeholders/partner-btc.svg"
+        "url": "https://planb.network",
+        "logo": "images/partners/plan-b-network.svg"
       },
       {
-        "url": "https://example.com/partner/lightning-builders",
-        "logo": "images/placeholders/partner-ln.svg"
+        "url": "https://example.com/partner/aqua",
+        "logo": "images/partners/aqua.svg"
+      },
+      {
+        "url": "https://planb.foundation",
+        "logo": "images/partners/plan-b-foundation.svg"
       }
     ]
   },
   "team": {
     "members": [
-      { "photo": "images/placeholders/avatar-1.svg" },
-      { "photo": "images/placeholders/avatar-2.svg" },
-      { "photo": "images/placeholders/avatar-3.svg" },
-      { "photo": "images/placeholders/avatar-4.svg" },
-      { "photo": "images/placeholders/avatar-5.svg" }
+      { "photo": "images/placeholders/avatar-1.svg", "linkedinUrl": "https://www.linkedin.com/in/example-giulia-fabbri" },
+      { "photo": "images/placeholders/avatar-2.svg", "linkedinUrl": "https://www.linkedin.com/in/example-luca-martini" },
+      { "photo": "images/placeholders/avatar-3.svg", "linkedinUrl": "https://www.linkedin.com/in/example-sara-nguyen" },
+      { "photo": "images/placeholders/avatar-4.svg", "linkedinUrl": "https://www.linkedin.com/in/example-tommaso-keller" },
+      { "photo": "images/placeholders/avatar-5.svg", "linkedinUrl": "https://www.linkedin.com/in/example-nina-costa" },
+      { "photo": "images/placeholders/avatar-6.svg", "linkedinUrl": "https://www.linkedin.com/in/example-marco-rossi" }
     ]
   }
 }

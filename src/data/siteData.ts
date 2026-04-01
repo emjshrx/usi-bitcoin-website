@@ -17,13 +17,21 @@ export function mergeSite(locale: LocaleSite) {
   assertSameLength(locale.social.links, config.social.links, "social.links");
   assertSameLength(locale.partners.items, config.partners.items, "partners.items");
   assertSameLength(locale.team.members, config.team.members, "team.members");
+  assertSameLength(
+    locale.cosaFacciamo.events,
+    config.cosaFacciamo.events,
+    "cosaFacciamo.events",
+  );
 
   return {
     ...locale,
     brand: config.brand,
     images: config.images,
-    report: { ...locale.report, url: config.report.url },
-    nextEvent: { ...locale.nextEvent, lumaUrl: config.nextEvent.lumaUrl },
+    report: {
+      ...locale.report,
+      url: config.report.url,
+      coverImage: config.report.coverImage,
+    },
     join: {
       ...locale.join,
       joinUrl: config.join.joinUrl,
@@ -38,7 +46,13 @@ export function mergeSite(locale: LocaleSite) {
       })),
     },
     joinTeam: { ...locale.joinTeam, url: config.joinTeam.url },
-    association: { ...locale.association, formUrl: config.association.formUrl },
+    cosaFacciamo: {
+      ...locale.cosaFacciamo,
+      events: locale.cosaFacciamo.events.map((ev, i) => ({
+        ...ev,
+        image: config.cosaFacciamo.events[i].image,
+      })),
+    },
     partners: {
       ...locale.partners,
       items: locale.partners.items.map((item, i) => ({
@@ -52,6 +66,7 @@ export function mergeSite(locale: LocaleSite) {
       members: locale.team.members.map((m, i) => ({
         ...m,
         photo: config.team.members[i].photo,
+        linkedinUrl: config.team.members[i].linkedinUrl,
       })),
     },
   };

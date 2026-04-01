@@ -2,9 +2,10 @@
 interface Props {
   id?: string;
   title: string;
+  centerHeading?: boolean;
 }
 
-const { id, title } = Astro.props;
+const { id, title, centerHeading = false } = Astro.props;
 ---
 
 <section
@@ -12,7 +13,13 @@ const { id, title } = Astro.props;
   class="scroll-mt-6"
   aria-labelledby={id ? `${id}-heading` : undefined}
 >
-  <h2 id={id ? `${id}-heading` : undefined} class="mb-6 text-xl font-bold tracking-tight md:text-2xl">
+  <h2
+    id={id ? `${id}-heading` : undefined}
+    class:list={[
+      "mb-6 text-xl font-bold tracking-tight md:text-2xl",
+      centerHeading && "text-center",
+    ]}
+  >
     {title}
   </h2>
   <div class="text-[0.95rem] leading-relaxed text-ink/90">
