@@ -11,6 +11,10 @@ npm install
 npm run dev
 ```
 
+With `base: '/usi-bitcoin-website'`, open **`http://localhost:4321/usi-bitcoin-website/`** for `npm run dev` and `npm run preview` (not the site root), so assets and routes resolve correctly.
+
+**Languages:** Italian is the default (`/usi-bitcoin-website/`). English uses the same layout at **`/usi-bitcoin-website/en/`**. Translatable copy lives in [`src/data/site.json`](src/data/site.json) (IT) and [`src/data/site.en.json`](src/data/site.en.json) (EN). Shared URLs and asset paths (report PDF, Luma, forms, Telegram, social URLs, logos, team photos, hero images) live once in [`src/data/config.json`](src/data/config.json); [`src/data/siteData.ts`](src/data/siteData.ts) merges them at build time.
+
 Build di produzione:
 
 ```bash

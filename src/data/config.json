@@ -1,0 +1,61 @@
+{
+  "brand": {
+    "title": "Bitcoin USI Club",
+    "colophon": "Proof of Students Hub"
+  },
+  "images": {
+    "logo": "images/pos_hub_logo.jpeg",
+    "usiBuilding": "images/orientamento-correzione_obiettivo_-_9.jpg",
+    "footerStrip": "images/orientamento-correzione_obiettivo_-_9.jpg"
+  },
+  "report": {
+    "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+  },
+  "nextEvent": {
+    "lumaUrl": "https://lu.ma/bitcoin-usi-sample-event"
+  },
+  "join": {
+    "joinUrl": "https://t.me/BitcoinUSI",
+    "email": "bitcoin.club@example.usi",
+    "qrImage": "images/placeholders/sample-qr.svg"
+  },
+  "social": {
+    "links": [
+      { "url": "https://example.com/social/bitcoin-usi-instagram" },
+      { "url": "https://example.com/social/bitcoin-usi-x" },
+      { "url": "https://example.com/social/bitcoin-usi-linkedin" },
+      { "url": "https://example.com/social/bitcoin-usi-youtube" }
+    ]
+  },
+  "joinTeam": {
+    "url": "https://example.com/forms/bitcoin-usi-join-team"
+  },
+  "association": {
+    "formUrl": "https://example.com/forms/bitcoin-usi-association"
+  },
+  "partners": {
+    "items": [
+      {
+        "url": "https://www.usi.ch",
+        "logo": "images/placeholders/partner-usi.svg"
+      },
+      {
+        "url": "https://example.com/partner/bitcoin-meetup-ticino",
+        "logo": "images/placeholders/partner-btc.svg"
+      },
+      {
+        "url": "https://example.com/partner/lightning-builders",
+        "logo": "images/placeholders/partner-ln.svg"
+      }
+    ]
+  },
+  "team": {
+    "members": [
+      { "photo": "images/placeholders/avatar-1.svg" },
+      { "photo": "images/placeholders/avatar-2.svg" },
+      { "photo": "images/placeholders/avatar-3.svg" },
+      { "photo": "images/placeholders/avatar-4.svg" },
+      { "photo": "images/placeholders/avatar-5.svg" }
+    ]
+  }
+}

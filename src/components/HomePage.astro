@@ -1,0 +1,394 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContentCard from "./ContentCard.astro";
+import SectionBlock from "./SectionBlock.astro";
+import LanguageToggle from "./LanguageToggle.astro";
+import { withBase } from "../utils/withBase";
+import type { SiteData } from "../data/siteData";
+
+interface Props {
+  site: SiteData;
+  lang: "it" | "en";
+}
+
+const { site, lang } = Astro.props;
+const asset = withBase;
+
+const {
+  brand,
+  report,
+  nextEvent,
+  cosaFacciamo,
+  chiSiamo,
+  missione,
+  visione,
+  join,
+  social,
+  joinTeam,
+  partners,
+  team,
+  association,
+  images,
+  seo,
+  ui,
+} = site;
+
+const showReport = Boolean(report.url?.trim());
+const showNextEvent = Boolean(
+  nextEvent.lumaUrl?.trim() || nextEvent.title?.trim() || nextEvent.description?.trim(),
+);
+const showCosaFacciamo =
+  cosaFacciamo.events.length > 0 || Boolean(cosaFacciamo.intro?.trim());
+const showSocial = social.links.length > 0;
+const showJoinTeam = Boolean(joinTeam.url?.trim());
+const showPartners = partners.items.length > 0;
+const showTeam = team.members.length > 0;
+const showAssociation = Boolean(association.formUrl?.trim());
+const showTopRow = showReport || showNextEvent;
+---
+
+<Layout title={brand.title} description={seo.description} lang={lang}>
+  <header class="relative overflow-hidden bg-card px-6 py-12 md:py-16">
+    <div class="absolute right-4 top-4 z-20 md:right-6 md:top-6">
+      <LanguageToggle lang={lang} label={ui.languageSwitchLabel} />
+    </div>
+    <div
+      class="hero-diagonal-tl pointer-events-none absolute left-0 top-0 h-48 w-64 bg-accent md:h-64 md:w-96"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="hero-diagonal-br pointer-events-none absolute bottom-0 right-0 h-56 w-72 bg-accent md:h-72 md:w-[28rem]"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="relative mx-auto flex max-w-lg flex-col items-center text-center">
+      <img
+        src={asset(images.logo)}
+        alt={ui.logoAlt}
+        width="120"
+        height="120"
+        class="mb-5 h-[7.5rem] w-[7.5rem] object-contain"
+      />
+      <h1 class="text-2xl font-bold tracking-tight md:text-3xl">{brand.title}</h1>
+    </div>
+  </header>
+
+  <main class="px-4 pb-16 pt-8 md:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl space-y-12">
+      {
+        showTopRow ? (
+          <div class="grid gap-6 md:grid-cols-2">
+            {showReport ? (
+              <section
+                id="report"
+                class="scroll-mt-6 rounded-sm bg-card p-6 shadow-card md:p-7"
+                aria-labelledby="report-heading"
+              >
+                <h2 id="report-heading" class="mb-3 text-lg font-bold md:text-xl">
+                  {report.sectionTitle}
+                </h2>
+                <p class="mb-5 text-[0.95rem] leading-relaxed text-ink/85">{report.description}</p>
+                <a
+                  href={report.url}
+                  class="inline-flex min-h-[44px] items-center justify-center rounded-sm border-2 border-ink bg-ink px-5 py-3 text-sm font-semibold text-card transition hover:bg-card hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {report.buttonLabel}
+                </a>
+              </section>
+            ) : null}
+            {showNextEvent ? (
+              <section
+                id="prossimo-evento"
+                class="scroll-mt-6 rounded-sm bg-card p-6 shadow-card md:p-7"
+                aria-labelledby="prossimo-evento-heading"
+              >
+                <h2 id="prossimo-evento-heading" class="mb-3 text-lg font-bold md:text-xl">
+                  {nextEvent.sectionTitle}
+                </h2>
+                {nextEvent.title ? <p class="text-base font-semibold">{nextEvent.title}</p> : null}
+                {nextEvent.datetime ? (
+                  <p class="mt-1 text-sm text-ink/70">{nextEvent.datetime}</p>
+                ) : null}
+                {nextEvent.description ? (
+                  <p class="mt-3 text-[0.95rem] leading-relaxed text-ink/85">{nextEvent.description}</p>
+                ) : null}
+                {nextEvent.lumaUrl?.trim() ? (
+                  <a
+                    href={nextEvent.lumaUrl}
+                    class="mt-5 inline-flex min-h-[44px] items-center justify-center rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-card transition hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {nextEvent.lumaButtonLabel}
+                  </a>
+                ) : null}
+              </section>
+            ) : null}
+          </div>
+        ) : null
+      }
+
+      {
+        showCosaFacciamo ? (
+          <SectionBlock id="cosa-facciamo" title={cosaFacciamo.sectionTitle}>
+            {cosaFacciamo.intro ? <p class="mb-6 max-w-3xl">{cosaFacciamo.intro}</p> : null}
+            {cosaFacciamo.events.length > 0 ? (
+              <ul class="grid gap-4 sm:grid-cols-2">
+                {cosaFacciamo.events.map((ev) => (
+                  <li class="rounded-sm border border-ink/10 bg-card p-5 shadow-card">
+                    <p class="font-bold">{ev.title}</p>
+                    {ev.date ? <p class="mt-1 text-sm text-ink/65">{ev.date}</p> : null}
+                    {ev.description ? <p class="mt-2 text-[0.9rem] leading-relaxed">{ev.description}</p> : null}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="max-w-3xl text-[0.95rem] text-ink/55">
+                {ui.emptyEventsBefore}
+                <code class="rounded bg-accent px-1 py-0.5 text-[0.8rem]">{ui.emptyEventsField}</code>
+                {ui.emptyEventsIn}
+                <code class="rounded bg-accent px-1 py-0.5 text-[0.8rem]">{ui.emptyEventsFile}</code>
+                {ui.emptyEventsAfter}
+              </p>
+            )}
+          </SectionBlock>
+        ) : null
+      }
+
+      <div class="flex flex-col gap-8 lg:grid lg:grid-cols-12 lg:gap-8 lg:items-start">
+        <div class="flex flex-col gap-5 lg:col-span-4">
+          <div class="hidden items-center gap-4 lg:flex lg:flex-col lg:items-start">
+            <img
+              src={asset(images.logo)}
+              alt=""
+              width="88"
+              height="88"
+              class="h-[5.5rem] w-[5.5rem] shrink-0 object-contain"
+            />
+            <p class="text-lg font-bold">{brand.title}</p>
+          </div>
+          <ContentCard title={chiSiamo.title}>
+            <p>{chiSiamo.body}</p>
+          </ContentCard>
+          <ContentCard title={missione.title}>
+            <p>{missione.body}</p>
+          </ContentCard>
+          <ContentCard title={visione.title}>
+            <p>{visione.body}</p>
+          </ContentCard>
+        </div>
+
+        <div class="flex flex-col gap-5 lg:col-span-4">
+          <section class="rounded-sm bg-card p-6 shadow-card md:p-7">
+            <h2 class="mb-4 text-xl font-bold italic tracking-tight">{join.title}</h2>
+            <ul class="mb-6 space-y-2 text-[0.95rem] font-medium leading-relaxed">
+              {join.bullets.map((item) => (
+                <li class="flex gap-2">
+                  <span class="text-ink/40" aria-hidden="true">—</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="text-lg font-bold italic leading-snug">
+              {join.tagline.before}
+              <span class="tracking-wide">{join.tagline.emphasis}</span>
+              {join.tagline.after}
+            </p>
+          </section>
+        </div>
+
+        <div class="flex flex-col gap-6 lg:col-span-4">
+          <div class="overflow-hidden rounded-sm bg-card shadow-card">
+            <img
+              src={asset(images.usiBuilding)}
+              alt={ui.usiBuildingAlt}
+              width="800"
+              height="500"
+              class="tear-bottom aspect-[4/3] w-full object-cover object-center"
+              loading="lazy"
+            />
+          </div>
+          <section class="rounded-sm bg-card p-6 shadow-card">
+            <p class="mb-4 text-sm font-semibold uppercase tracking-wide text-ink/70">{ui.contactsHeading}</p>
+            {join.qrImage ? (
+              <div class="mb-4 flex justify-center">
+                <img
+                  src={asset(join.qrImage)}
+                  alt={ui.qrAlt}
+                  width="200"
+                  height="200"
+                  class="max-w-[200px] object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ) : null}
+            <a
+              href={join.joinUrl}
+              class="inline-flex min-h-[44px] items-center justify-center rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-card transition hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+              rel="noopener noreferrer"
+            >
+              {join.joinButtonLabel}
+            </a>
+            {join.email ? (
+              <a
+                href={`mailto:${join.email}`}
+                class="mt-3 block text-sm font-medium underline underline-offset-2"
+              >
+                {join.email}
+              </a>
+            ) : null}
+          </section>
+        </div>
+      </div>
+
+      {
+        showSocial ? (
+          <SectionBlock id="social" title={social.sectionTitle}>
+            {social.intro ? <p class="mb-5 max-w-3xl">{social.intro}</p> : null}
+            <ul class="flex flex-wrap gap-3">
+              {social.links.map((link) => (
+                <li>
+                  <a
+                    href={link.url}
+                    class="inline-flex min-h-[44px] items-center rounded-sm border border-ink/20 bg-card px-4 py-2 text-sm font-semibold transition hover:border-ink hover:bg-accent"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </SectionBlock>
+        ) : null
+      }
+
+      {
+        showJoinTeam ? (
+          <SectionBlock id="join-team" title={joinTeam.sectionTitle}>
+            <p class="mb-5 max-w-3xl">{joinTeam.description}</p>
+            <a
+              href={joinTeam.url}
+              class="inline-flex min-h-[44px] items-center justify-center rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-card transition hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {joinTeam.buttonLabel}
+            </a>
+          </SectionBlock>
+        ) : null
+      }
+
+      {
+        showPartners ? (
+          <SectionBlock id="partner" title={partners.sectionTitle}>
+            {partners.intro ? <p class="mb-6 max-w-3xl">{partners.intro}</p> : null}
+            <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+              {partners.items.map((p) => (
+                <li class="flex flex-col items-start rounded-sm border border-ink/10 bg-card p-5 shadow-card">
+                  {p.logo?.trim() ? (
+                    <img
+                      src={asset(p.logo.trim())}
+                      alt=""
+                      class="mb-3 h-12 w-auto max-w-full object-contain"
+                      loading="lazy"
+                    />
+                  ) : null}
+                  {p.url?.trim() ? (
+                    <a
+                      href={p.url}
+                      class="font-semibold underline-offset-2 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {p.name}
+                    </a>
+                  ) : (
+                    <span class="font-semibold">{p.name}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </SectionBlock>
+        ) : null
+      }
+
+      {
+        showTeam ? (
+          <SectionBlock id="team" title={team.sectionTitle}>
+            {team.intro ? <p class="mb-8 max-w-3xl">{team.intro}</p> : null}
+            <ul class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {team.members.map((m) => (
+                <li class="flex flex-col rounded-sm border border-ink/10 bg-card p-5 shadow-card">
+                  {m.photo?.trim() ? (
+                    <img
+                      src={asset(m.photo.trim())}
+                      alt=""
+                      class="tear-bottom mb-4 aspect-square w-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div
+                      class="tear-bottom mb-4 flex aspect-square w-full items-center justify-center bg-accent text-2xl font-bold text-ink/40"
+                      aria-hidden="true"
+                    >
+                      {m.name
+                        .split(/\s+/)
+                        .map((w) => w[0])
+                        .join("")
+                        .slice(0, 2)
+                        .toUpperCase()}
+                    </div>
+                  )}
+                  <p class="font-bold">{m.name}</p>
+                  {m.role ? <p class="mt-1 text-sm font-medium text-ink/70">{m.role}</p> : null}
+                  {m.bio ? <p class="mt-2 text-[0.9rem] leading-relaxed text-ink/85">{m.bio}</p> : null}
+                </li>
+              ))}
+            </ul>
+          </SectionBlock>
+        ) : null
+      }
+
+      {
+        showAssociation ? (
+          <SectionBlock id="associazione" title={association.sectionTitle}>
+            <p class="mb-5 max-w-3xl">{association.description}</p>
+            <a
+              href={association.formUrl}
+              class="inline-flex min-h-[44px] items-center justify-center rounded-sm border-2 border-ink bg-card px-5 py-3 text-sm font-semibold text-ink transition hover:bg-ink hover:text-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {association.buttonLabel}
+            </a>
+          </SectionBlock>
+        ) : null
+      }
+
+      {
+        images.footerStrip ? (
+          <div class="overflow-hidden rounded-sm shadow-card">
+            <img
+              src={asset(images.footerStrip)}
+              alt=""
+              width="1200"
+              height="400"
+              class="tear-top max-h-[min(420px,50vh)] w-full object-cover object-center"
+              loading="lazy"
+            />
+          </div>
+        ) : null
+      }
+    </div>
+  </main>
+
+  <footer class="border-t border-ink/10 bg-card px-4 py-8 text-center text-sm text-ink/65 md:px-6">
+    <p class="font-semibold text-ink">{brand.title}</p>
+    <p class="mt-1">{brand.colophon}</p>
+    <p class="mt-4 text-xs">{ui.footerNote}</p>
+  </footer>
+</Layout>

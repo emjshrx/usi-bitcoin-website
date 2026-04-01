@@ -1,7 +1,41 @@
 {
-  "brand": {
-    "title": "Bitcoin USI Club",
-    "colophon": "Proof of Students Hub"
+  "report": {
+    "sectionTitle": "Download report",
+    "description": "Scarica il report annuale del club (PDF).",
+    "buttonLabel": "Scarica il report"
+  },
+  "nextEvent": {
+    "sectionTitle": "Prossimo evento",
+    "title": "Bitcoin & società — tavola rotonda",
+    "datetime": "Giovedì 10 aprile 2026, ore 18:30 — Aula magna (campus West, Lugano)",
+    "description": "Discussione aperta su educazione finanziaria, auto-custodia e il ruolo di Bitcoin nel dibattito pubblico. Iscrizione obbligatoria tramite Luma.",
+    "lumaButtonLabel": "Iscriviti su Luma"
+  },
+  "cosaFacciamo": {
+    "sectionTitle": "Cosa facciamo",
+    "intro": "Eventi e attività passate (dati di esempio — sostituisci con quelli reali).",
+    "events": [
+      {
+        "title": "Bitcoin 101 — open talk",
+        "date": "15 novembre 2025",
+        "description": "Introduzione a Bitcoin, mining e wallet: concetti base e domande dal pubblico."
+      },
+      {
+        "title": "Workshop: Lightning Network",
+        "date": "28 gennaio 2026",
+        "description": "Demo pratica di pagamenti su second layer e discussione su trade-off di scalabilità."
+      },
+      {
+        "title": "Panel: regolazione e privacy",
+        "date": "7 febbraio 2026",
+        "description": "Dibattito con ospiti su MiCA, auto-custodia e responsabilità degli operatori."
+      },
+      {
+        "title": "Serata film + dibattito",
+        "date": "20 febbraio 2026",
+        "description": "Proiezione e discussione su narrativa mainstream e educazione finanziaria."
+      }
+    ]
   },
   "chiSiamo": {
     "title": "Chi siamo",
@@ -27,17 +61,82 @@
       "emphasis": "UNI",
       "after": "verse"
     },
-    "joinUrl": "https://t.me/BitcoinUSI",
-    "joinButtonLabel": "Unisciti al gruppo",
-    "email": "",
-    "qrImage": ""
+    "joinButtonLabel": "Unisciti al gruppo"
   },
-  "images": {
-    "logo": "images/pos_hub_logo.jpeg",
-    "usiBuilding": "images/orientamento-correzione_obiettivo_-_9.jpg",
-    "footerStrip": ""
+  "social": {
+    "sectionTitle": "Social e contatti",
+    "intro": "Seguici e scrivici.",
+    "links": [
+      { "label": "Instagram" },
+      { "label": "X (Twitter)" },
+      { "label": "LinkedIn" },
+      { "label": "YouTube" }
+    ]
+  },
+  "joinTeam": {
+    "sectionTitle": "Unisciti al team",
+    "description": "Vuoi organizzare eventi, contenuti o operatività? Candidati con il modulo.",
+    "buttonLabel": "Candidati (Notion / Google Form)"
+  },
+  "partners": {
+    "sectionTitle": "Partner",
+    "intro": "Organizzazioni che sostengono il club.",
+    "items": [
+      { "name": "Università della Svizzera italiana" },
+      { "name": "Bitcoin Meetup Ticino (esempio)" },
+      { "name": "Lightning builders community (esempio)" }
+    ]
+  },
+  "team": {
+    "sectionTitle": "Team",
+    "intro": "Membri del comitato (dati di esempio — sostituisci con nomi, ruoli e foto reali).",
+    "members": [
+      {
+        "name": "Giulia Fabbri",
+        "role": "Presidente",
+        "bio": "Economia e finanza; organizza eventi e relazioni con l’ateneo."
+      },
+      {
+        "name": "Luca Martini",
+        "role": "Vicepresidente",
+        "bio": "Informatica; cura workshop tecnici e materiale per principianti."
+      },
+      {
+        "name": "Sara Nguyen",
+        "role": "Tesoriere",
+        "bio": "Gestione budget associativo e convenzioni con partner."
+      },
+      {
+        "name": "Tommaso Keller",
+        "role": "Responsabile comunicazione",
+        "bio": "Social, newsletter e coordinamento con altri club universitari."
+      },
+      {
+        "name": "Nina Costa",
+        "role": "Community lead",
+        "bio": "Accoglienza nuovi membri e moderazione del gruppo Telegram."
+      }
+    ]
+  },
+  "association": {
+    "sectionTitle": "Registrati all'associazione",
+    "description": "Compila il modulo Google per l'iscrizione formale all'associazione studentesca.",
+    "buttonLabel": "Apri il modulo"
   },
   "seo": {
     "description": "Bitcoin USI Club — studenti USI per educazione e community su Bitcoin e tecnologie decentralizzate."
+  },
+  "ui": {
+    "languageSwitchLabel": "English",
+    "logoAlt": "Logo Bitcoin USI Club",
+    "contactsHeading": "Contatti",
+    "usiBuildingAlt": "Edificio principale dell'Università della Svizzera italiana, Lugano",
+    "qrAlt": "QR code per unirsi al gruppo",
+    "emptyEventsBefore": "Nessun evento passato in elenco. Aggiungi voci in ",
+    "emptyEventsAfter": ".",
+    "emptyEventsField": "cosaFacciamo.events",
+    "emptyEventsIn": " in ",
+    "emptyEventsFile": "src/data/site.json",
+    "footerNote": "Sito statico — modifica i contenuti in repository."
   }
 }
