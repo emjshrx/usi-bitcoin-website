@@ -6,7 +6,7 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<section class="rounded-sm bg-card p-5 shadow-card md:p-6">
+<section class="flex h-full flex-col rounded-sm border border-ink/10 bg-card p-5 shadow-card md:p-6">
   <h2 class="mb-3 text-lg font-bold tracking-tight">{title}</h2>
   <div class="text-[0.95rem] leading-relaxed text-ink/90">
     <slot />
