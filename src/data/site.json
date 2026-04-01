@@ -1,0 +1,43 @@
+{
+  "brand": {
+    "title": "Bitcoin USI Club",
+    "colophon": "Proof of Students Hub"
+  },
+  "chiSiamo": {
+    "title": "Chi siamo",
+    "body": "Siamo un collettivo di studenti entusiasti, con una forte passione per l'economia, Bitcoin e le tecnologie emergenti."
+  },
+  "missione": {
+    "title": "Missione",
+    "body": "Diffondere la conoscenza su Bitcoin e sulle tecnologie decentralizzate, promuovendo pensiero critico e innovazione tra gli studenti universitari."
+  },
+  "visione": {
+    "title": "Visione",
+    "body": "Creare una community di studenti consapevoli, appassionati di tecnologia e sostenitori di un futuro economico più libero e trasparente."
+  },
+  "join": {
+    "title": "Unisciti a noi",
+    "bullets": [
+      "Nuove idee",
+      "Nuove opportunità",
+      "Nuove amicizie"
+    ],
+    "tagline": {
+      "before": "Step into the Bitcoin ",
+      "emphasis": "UNI",
+      "after": "verse"
+    },
+    "joinUrl": "https://t.me/BitcoinUSI",
+    "joinButtonLabel": "Unisciti al gruppo",
+    "email": "",
+    "qrImage": ""
+  },
+  "images": {
+    "logo": "images/pos_hub_logo.jpeg",
+    "usiBuilding": "images/orientamento-correzione_obiettivo_-_9.jpg",
+    "footerStrip": ""
+  },
+  "seo": {
+    "description": "Bitcoin USI Club — studenti USI per educazione e community su Bitcoin e tecnologie decentralizzate."
+  }
+}
