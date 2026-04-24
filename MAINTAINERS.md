@@ -67,7 +67,7 @@ Salva con **Commit changes** su `main`. Se aggiungi o togli voci (social, partne
 ## Deploy e URL
 
 - **Impostazioni repository → Pages:** sorgente **GitHub Actions**.
-- Se rinomini il repository o usi un altro account, aggiorna **`astro.config.mjs`**: valori `site` e `base` devono corrispondere a `https://<utente>.github.io/<repo>/`.
+- Se cambi host o percorso pubblico, aggiorna **`astro.config.mjs`**: `site` = URL canonico (es. `https://bitcoinclub.ch` o `https://<utente>.github.io`), `base` = `"/"` sul dominio dedicato oppure `"/<repo>/"` su GitHub Pages senza custom domain.
 
 ## Sviluppo locale (sviluppatori)
 

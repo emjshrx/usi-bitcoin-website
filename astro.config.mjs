@@ -1,10 +1,10 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 
-// GitHub Pages project site: https://<user>.github.io/<repo>/
-// If you fork or rename the repo, update `site` and `base` to match.
+// Production: custom domain. For GitHub Pages with a subpath, set `site` to your
+// `https://<user>.github.io` URL and `base` to `/<repo>/` instead.
 export default defineConfig({
-  site: "https://emjshrx.github.io",
-  base: "/usi-bitcoin-website",
+  site: "https://bitcoinclub.ch",
+  base: "/",
   integrations: [tailwind()],
 });

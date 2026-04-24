@@ -11,9 +11,9 @@ npm install
 npm run dev
 ```
 
-With `base: '/usi-bitcoin-website'`, open **`http://localhost:4321/usi-bitcoin-website/`** for `npm run dev` and `npm run preview` (not the site root), so assets and routes resolve correctly.
+For `npm run dev` and `npm run preview`, open the site at **`http://localhost:4321/`** (Italian default) and **`http://localhost:4321/en/`** for English.
 
-**Languages:** Italian is the default (`/usi-bitcoin-website/`). English uses the same layout at **`/usi-bitcoin-website/en/`**. Translatable copy lives in [`src/data/site.json`](src/data/site.json) (IT) and [`src/data/site.en.json`](src/data/site.en.json) (EN). Shared URLs and asset paths (report PDF, Luma, forms, Telegram, social URLs, logos, team photos, hero images) live once in [`src/data/config.json`](src/data/config.json); [`src/data/siteData.ts`](src/data/siteData.ts) merges them at build time.
+**Languages:** Italian is the default (`/`). English uses the same layout at **`/en/`**. Translatable copy lives in [`src/data/site.json`](src/data/site.json) (IT) and [`src/data/site.en.json`](src/data/site.en.json) (EN). Shared URLs and asset paths (report PDF, Luma, forms, Telegram, social URLs, logos, team photos, hero images) live once in [`src/data/config.json`](src/data/config.json); [`src/data/siteData.ts`](src/data/siteData.ts) merges them at build time.
 
 Build di produzione:
 
@@ -32,9 +32,9 @@ Vedi **[MAINTAINERS.md](./MAINTAINERS.md)**.
 
 1. Repository → **Settings** → **Pages** → **Build and deployment** → Source: **GitHub Actions**.
 2. Il workflow [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) parte su ogni push su `main`.
-3. Se cambi nome del repository o account GitHub, aggiorna `site` e `base` in [`astro.config.mjs`](./astro.config.mjs).
+3. In [`astro.config.mjs`](./astro.config.mjs) imposta `site` sull’URL canonico in produzione e `base` su `"/"` (dominio dedicato) oppure, per un progetto sotto `github.io`, sull’URL e sul path `/<repo>/` corretti.
 
-URL atteso: `https://emjshrx.github.io/usi-bitcoin-website/` (con questa configurazione).
+URL di produzione: [https://bitcoinclub.ch](https://bitcoinclub.ch) (e `/en/` per l’inglese).
 
 ## Riferimenti di design
 
