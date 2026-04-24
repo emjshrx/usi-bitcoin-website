@@ -2,9 +2,10 @@
 interface Props {
   url: string;
   label: string;
+  dark?: boolean;
 }
 
-const { url, label } = Astro.props;
+const { url, label, dark = false } = Astro.props;
 
 const u = url.toLowerCase();
 const l = label.toLowerCase();
@@ -47,7 +48,9 @@ else if (u.includes("tiktok") || l.includes("tiktok")) network = "tiktok";
   target="_blank"
   rel="noopener noreferrer"
   aria-label={label}
-  class="group inline-flex h-11 w-11 items-center justify-center rounded-full text-ink/70 transition hover:bg-accent hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+  class={dark
+    ? "group inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-orange-500/60 hover:text-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+    : "group inline-flex h-11 w-11 items-center justify-center rounded-full text-ink/70 transition hover:bg-accent hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"}
 >
   {
     network === "instagram" && (
