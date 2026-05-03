@@ -4,9 +4,15 @@ import { withBase } from "../utils/withBase";
 interface Props {
   lang: "it" | "en";
   label: string;
+  /** Optional; use when `label` is abbreviated (e.g. EN / IT). */
+  ariaLabel?: string;
+  /** Appended to base classes (e.g. drawer layout). */
+  extraClass?: string;
 }
 
-const { lang, label } = Astro.props;
+const { lang, label, ariaLabel, extraClass } = Astro.props;
+const baseClass =
+  "inline-flex min-h-[40px] min-w-[40px] items-center justify-center rounded-sm border border-ink/25 bg-card px-3 py-2 text-xs font-semibold uppercase tracking-wide text-ink shadow-sm transition hover:border-ink hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink md:text-sm";
 const href = lang === "it" ? withBase("en/") : withBase("");
 const hrefLang = lang === "it" ? "en" : "it";
 ---
@@ -15,7 +21,8 @@ const hrefLang = lang === "it" ? "en" : "it";
   href={href}
   hreflang={hrefLang}
   lang={hrefLang}
-  class="inline-flex min-h-[40px] items-center justify-center rounded-sm border border-ink/25 bg-card px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink shadow-sm transition hover:border-ink hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink md:text-sm"
+  {...ariaLabel ? { "aria-label": ariaLabel } : {}}
+  class:list={[baseClass, extraClass]}
 >
   {label}
 </a>

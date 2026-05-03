@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import SocialIconLink from "./SocialIconLink.astro";
-import LanguageToggle from "./LanguageToggle.astro";
+import SiteHeader from "./SiteHeader.astro";
 import { withBase } from "../utils/withBase";
 import type { SiteData } from "../data/siteData";
 
@@ -47,54 +47,7 @@ const filteredSocialLinks = social.links.filter(
 
 <Layout title={brand.title} description={seo.description} lang={lang}>
 
-  <!-- ═══ HEADER BANNER — logo only, white, scrolls away ════════════════ -->
-  <header class="bg-white px-4 py-4 md:px-8">
-    <div class="mx-auto flex max-w-7xl items-center justify-between">
-      <a href={asset("")} aria-label={ui.logoAlt}>
-        <img
-          src={asset(site.images.logo)}
-          alt={ui.logoAlt}
-          width="52"
-          height="52"
-          class="h-13 w-13 rounded-full object-cover"
-        />
-      </a>
-      <LanguageToggle lang={lang} label={ui.languageSwitchLabel} />
-    </div>
-  </header>
-
-  <!-- ═══ STICKY MENU BAR ════════════════════════════════════════════════ -->
-  <nav class="sticky top-0 z-50 border-b border-black/8 bg-white/95 backdrop-blur-md">
-    <div class="mx-auto flex max-w-7xl items-center gap-1 overflow-x-auto px-4 py-2.5 md:gap-2 md:px-8">
-      <a href="#chi-siamo" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold text-ink/60 transition hover:bg-gray-100 hover:text-ink">
-        {chiSiamo.title}
-      </a>
-      <a href="#cosa-facciamo" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold text-ink/60 transition hover:bg-gray-100 hover:text-ink">
-        {cosaFacciamo.sectionTitle}
-      </a>
-      {showTeam && (
-        <a href="#team" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold text-ink/60 transition hover:bg-gray-100 hover:text-ink">
-          {team.sectionTitle}
-        </a>
-      )}
-      {showPartners && (
-        <a href="#partner" class="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold text-ink/60 transition hover:bg-gray-100 hover:text-ink">
-          {partners.sectionTitle}
-        </a>
-      )}
-      <span class="flex-1"></span>
-      <span aria-hidden="true" class="shrink-0 text-base leading-none">🇨🇭</span>
-      {join.joinUrl && (
-        <a
-          href={join.joinUrl}
-          class="ml-2 shrink-0 whitespace-nowrap rounded-full bg-orange-500 px-4 py-1.5 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-          rel="noopener noreferrer"
-        >
-          {join.joinButtonLabel}
-        </a>
-      )}
-    </div>
-  </nav>
+  <SiteHeader site={site} lang={lang} showTeam={showTeam} showPartners={showPartners} />
 
   <!-- ═══ HERO ════════════════════════════════════════════════════════════ -->
   <section
@@ -135,7 +88,7 @@ const filteredSocialLinks = social.links.filter(
   <div class="bg-white">
 
     <!-- CHI SIAMO + MISSIONE + VISIONE — merged ──────────────────────── -->
-    <section id="chi-siamo" class="scroll-mt-12 px-4 py-20 md:px-8">
+    <section id="chi-siamo" class="scroll-mt-24 px-4 py-20 md:px-8 md:scroll-mt-28">
       <div class="mx-auto max-w-4xl">
         <h2 class="mb-8 text-3xl font-black tracking-tight text-ink md:text-4xl">
           {chiSiamo.title}
@@ -148,7 +101,7 @@ const filteredSocialLinks = social.links.filter(
 
     <!-- COSA FACCIAMO ────────────────────────────────────────────────── -->
     {showCosaFacciamo && (
-      <section id="cosa-facciamo" class="scroll-mt-12 bg-gray-50 px-4 py-20 md:px-8">
+      <section id="cosa-facciamo" class="scroll-mt-24 bg-gray-50 px-4 py-20 md:px-8 md:scroll-mt-28">
         <div class="mx-auto max-w-6xl">
           <h2 class="mb-12 text-3xl font-black tracking-tight text-ink md:text-4xl">
             {cosaFacciamo.sectionTitle}
@@ -237,7 +190,7 @@ const filteredSocialLinks = social.links.filter(
 
     <!-- TEAM ─────────────────────────────────────────────────────────── -->
     {showTeam && (
-      <section id="team" class="scroll-mt-12 px-4 py-20 md:px-8">
+      <section id="team" class="scroll-mt-24 px-4 py-20 md:px-8 md:scroll-mt-28">
         <div class="mx-auto max-w-6xl">
           <h2 class="mb-4 text-3xl font-black tracking-tight text-white md:text-4xl">
             {team.sectionTitle}
@@ -286,7 +239,7 @@ const filteredSocialLinks = social.links.filter(
 
     <!-- PARTNERS ─────────────────────────────────────────────────────── -->
     {showPartners && (
-      <section id="partner" class="scroll-mt-12 px-4 py-16 md:px-8">
+      <section id="partner" class="scroll-mt-24 px-4 py-16 md:px-8 md:scroll-mt-28">
         <div class="mx-auto max-w-6xl">
           <p class="mb-8 text-xs font-bold uppercase tracking-widest text-white/35">{partners.sectionTitle}</p>
           {partners.intro && <p class="mb-8 text-sm text-white/50">{partners.intro}</p>}

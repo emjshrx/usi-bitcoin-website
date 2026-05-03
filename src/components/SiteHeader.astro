@@ -1,0 +1,479 @@
+---
+import LanguageToggle from "./LanguageToggle.astro";
+import { withBase } from "../utils/withBase";
+import type { SiteData } from "../data/siteData";
+
+interface Props {
+  site: SiteData;
+  lang: "it" | "en";
+  showTeam: boolean;
+  showPartners: boolean;
+}
+
+const asset = withBase;
+const { site, lang, showTeam, showPartners } = Astro.props;
+const { brand, chiSiamo, cosaFacciamo, team, partners, join, ui, images } = site;
+const flagSrc = asset("images/500px-Flag_of_Switzerland.svg.png");
+const navAria = lang === "en" ? "Page sections" : "Sezioni della pagina";
+const menuAria = lang === "en" ? "Main navigation" : "Navigazione principale";
+const menuToggleLabel = lang === "en" ? "Open menu" : "Apri menu";
+const menuCloseLabel = lang === "en" ? "Close menu" : "Chiudi menu";
+---
+
+<div id="site-header-root" class="fixed left-0 right-0 top-0 z-50 w-full">
+  <header
+    id="site-header"
+    class="border-b border-black/10 bg-white/95 backdrop-blur-md"
+  >
+    <div
+      class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:gap-6 md:px-8 md:py-3.5"
+    >
+      <a
+        href={asset("")}
+        class="flex min-w-0 flex-1 items-center gap-2.5 md:flex-initial md:gap-3"
+        aria-label={ui.logoAlt}
+      >
+        <img
+          src={asset(images.logo)}
+          alt=""
+          width="48"
+          height="48"
+          class="h-11 w-11 shrink-0 rounded-full object-cover md:h-12 md:w-12"
+          aria-hidden="true"
+        />
+        <span
+          class="min-w-0 text-sm font-bold leading-tight tracking-tight text-ink sm:text-base md:text-lg"
+        >
+          {brand.title}
+        </span>
+        <img
+          src={flagSrc}
+          alt=""
+          width="22"
+          height="22"
+          class="h-[22px] w-[22px] shrink-0 object-cover"
+          aria-hidden="true"
+        />
+      </a>
+
+      <nav
+        id="site-nav-desktop"
+        class="hidden min-w-0 flex-1 md:block"
+        aria-label={navAria}
+      >
+        <ul
+          class="flex list-none flex-wrap items-center justify-end gap-x-0.5 gap-y-1 md:gap-x-2"
+        >
+          <li>
+            <a
+              href="#chi-siamo"
+              data-nav-target="#chi-siamo"
+              class="nav-inpage block whitespace-nowrap px-2 py-1.5 text-sm font-medium text-ink/70 transition hover:text-ink md:px-2.5"
+            >
+              {chiSiamo.title}
+            </a>
+          </li>
+          <li>
+            <a
+              href="#cosa-facciamo"
+              data-nav-target="#cosa-facciamo"
+              class="nav-inpage block whitespace-nowrap px-2 py-1.5 text-sm font-medium text-ink/70 transition hover:text-ink md:px-2.5"
+            >
+              {cosaFacciamo.sectionTitle}
+            </a>
+          </li>
+          {showTeam && (
+            <li>
+              <a
+                href="#team"
+                data-nav-target="#team"
+                class="nav-inpage block whitespace-nowrap px-2 py-1.5 text-sm font-medium text-ink/70 transition hover:text-ink md:px-2.5"
+              >
+                {team.sectionTitle}
+              </a>
+            </li>
+          )}
+          {showPartners && (
+            <li>
+              <a
+                href="#partner"
+                data-nav-target="#partner"
+                class="nav-inpage block whitespace-nowrap px-2 py-1.5 text-sm font-medium text-ink/70 transition hover:text-ink md:px-2.5"
+              >
+                {partners.sectionTitle}
+              </a>
+            </li>
+          )}
+        </ul>
+      </nav>
+
+      <div class="flex shrink-0 items-center md:hidden">
+        <button
+          type="button"
+          id="nav-mobile-toggle"
+          class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-ink/20 text-ink transition hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+          aria-expanded="false"
+          aria-controls="nav-mobile-panel"
+          aria-label={menuToggleLabel}
+          data-close-label={menuCloseLabel}
+        >
+          <span class="nav-mobile-toggle__icon-open" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+          </span>
+          <span class="nav-mobile-toggle__icon-close hidden" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <div class="hidden shrink-0 items-center gap-3 md:flex">
+        <LanguageToggle
+          lang={lang}
+          label={lang === "it" ? "EN" : "IT"}
+          ariaLabel={ui.languageSwitchLabel}
+        />
+        {join.joinUrl && (
+          <a
+            href={join.joinUrl}
+            class="inline-flex min-h-[40px] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-orange-500 px-4 py-2 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+            rel="noopener noreferrer"
+          >
+            {join.joinButtonLabel}
+          </a>
+        )}
+      </div>
+    </div>
+  </header>
+
+  <div
+    id="nav-mobile-backdrop"
+    class="fixed inset-x-0 bottom-0 z-[48] hidden cursor-pointer bg-black/35 md:hidden"
+    style="top: 0"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    id="nav-mobile-panel"
+    class="fixed left-0 right-0 z-[49] hidden max-h-[min(75vh,calc(100dvh-3.5rem))] overflow-y-auto border-b border-black/10 bg-white shadow-lg md:hidden"
+    style="top: 0"
+    role="dialog"
+    aria-modal="true"
+    aria-label={menuAria}
+    hidden
+  >
+    <nav class="px-4 py-2" aria-label={navAria}>
+      <ul class="flex list-none flex-col gap-0.5">
+        <li class="border-b border-black/10">
+          <a
+            href="#chi-siamo"
+            data-nav-target="#chi-siamo"
+            class="nav-inpage block py-3.5 text-base font-medium text-ink/80 transition hover:text-ink"
+          >
+            {chiSiamo.title}
+          </a>
+        </li>
+        <li class="border-b border-black/10">
+          <a
+            href="#cosa-facciamo"
+            data-nav-target="#cosa-facciamo"
+            class="nav-inpage block py-3.5 text-base font-medium text-ink/80 transition hover:text-ink"
+          >
+            {cosaFacciamo.sectionTitle}
+          </a>
+        </li>
+        {showTeam && (
+          <li class="border-b border-black/10">
+            <a
+              href="#team"
+              data-nav-target="#team"
+              class="nav-inpage block py-3.5 text-base font-medium text-ink/80 transition hover:text-ink"
+            >
+              {team.sectionTitle}
+            </a>
+          </li>
+        )}
+        {showPartners && (
+          <li class="border-b border-black/10">
+            <a
+              href="#partner"
+              data-nav-target="#partner"
+              class="nav-inpage block py-3.5 text-base font-medium text-ink/80 transition hover:text-ink"
+            >
+              {partners.sectionTitle}
+            </a>
+          </li>
+        )}
+      </ul>
+    </nav>
+    <div class="flex flex-col gap-3 border-t border-black/10 px-4 py-4">
+      <LanguageToggle
+        lang={lang}
+        label={ui.languageSwitchLabel}
+        extraClass="min-h-[48px] w-full justify-center text-sm !normal-case font-medium"
+      />
+      {join.joinUrl && (
+        <a
+          href={join.joinUrl}
+          class="inline-flex min-h-[48px] w-full items-center justify-center rounded-full bg-orange-500 px-4 py-3 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+          rel="noopener noreferrer"
+        >
+          {join.joinButtonLabel}
+        </a>
+      )}
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .nav-inpage {
+    border-bottom: 1px solid transparent;
+    text-decoration: none;
+  }
+  .nav-inpage.nav-inpage--active {
+    color: #000000;
+    border-bottom-color: #000000;
+  }
+  #nav-mobile-panel .nav-inpage.nav-inpage--active {
+    border-bottom-color: transparent;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var links = document.querySelectorAll(
+      "#site-nav-desktop a[data-nav-target], #nav-mobile-panel a[data-nav-target]"
+    );
+    if (!links.length) return;
+
+    var header = document.getElementById("site-header");
+
+    function headerOffset() {
+      return header ? header.offsetHeight : 72;
+    }
+
+    function sectionIdsInOrder() {
+      var ids = [];
+      links.forEach(function (a) {
+        var h = a.getAttribute("data-nav-target");
+        if (!h || h.charAt(0) !== "#") return;
+        var id = h.slice(1);
+        if (ids.indexOf(id) !== -1) return;
+        if (document.getElementById(id)) ids.push(id);
+      });
+      return ids;
+    }
+
+    function applyActive(id) {
+      links.forEach(function (a) {
+        var h = a.getAttribute("data-nav-target");
+        var match = id && h === "#" + id;
+        var desktop = !!(a.closest && a.closest("#site-nav-desktop"));
+        if (match) {
+          a.classList.add("nav-inpage--active");
+          if (desktop) a.setAttribute("aria-current", "location");
+        } else {
+          a.classList.remove("nav-inpage--active");
+          if (desktop) a.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    /** Active section from scroll position only (not URL hash). */
+    function pickActiveFromScroll() {
+      var ids = sectionIdsInOrder();
+      if (!ids.length) return null;
+      var topLine = headerOffset();
+      var chosen = null;
+      var chosenTop = -Infinity;
+      for (var i = 0; i < ids.length; i++) {
+        var el = document.getElementById(ids[i]);
+        if (!el) continue;
+        var r = el.getBoundingClientRect();
+        if (r.bottom <= topLine + 4) continue;
+        if (r.top >= window.innerHeight * 0.55) continue;
+        if (el.offsetTop >= chosenTop) {
+          chosenTop = el.offsetTop;
+          chosen = ids[i];
+        }
+      }
+      return chosen;
+    }
+
+    function update() {
+      applyActive(pickActiveFromScroll());
+    }
+
+    function sectionElements() {
+      return sectionIdsInOrder()
+        .map(function (id) {
+          return document.getElementById(id);
+        })
+        .filter(Boolean);
+    }
+
+    var observer = null;
+    function marginString() {
+      return Math.round(-(headerOffset() + 4)) + "px 0px -52% 0px";
+    }
+    function attachObserver() {
+      if (observer) observer.disconnect();
+      observer = new IntersectionObserver(
+        function () {
+          update();
+        },
+        {
+          root: null,
+          rootMargin: marginString(),
+          threshold: [0, 0.02, 0.06, 0.12, 0.2, 0.35, 0.5, 0.65, 0.8, 1],
+        }
+      );
+      sectionElements().forEach(function (el) {
+        observer.observe(el);
+      });
+    }
+
+    attachObserver();
+
+    var scrollTicking = false;
+    function onScroll() {
+      if (!scrollTicking) {
+        requestAnimationFrame(function () {
+          update();
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", function () {
+      attachObserver();
+      update();
+    });
+
+    links.forEach(function (a) {
+      a.addEventListener("click", function () {
+        var h = a.getAttribute("href");
+        if (h && h.charAt(0) === "#") {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(update);
+          });
+        }
+      });
+    });
+
+    update();
+
+    window.addEventListener("load", function () {
+      requestAnimationFrame(update);
+    });
+  })();
+</script>
+
+<script is:inline>
+  (function () {
+    function syncSiteHeaderHeight() {
+      var el = document.getElementById("site-header");
+      if (el) {
+        document.documentElement.style.setProperty(
+          "--site-header-height",
+          el.offsetHeight + "px"
+        );
+      }
+    }
+    syncSiteHeaderHeight();
+    window.addEventListener("resize", syncSiteHeaderHeight);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(syncSiteHeaderHeight);
+    });
+  })();
+</script>
+
+<script is:inline>
+  (function () {
+    var mq = window.matchMedia("(max-width: 767px)");
+    var toggle = document.getElementById("nav-mobile-toggle");
+    var panel = document.getElementById("nav-mobile-panel");
+    var backdrop = document.getElementById("nav-mobile-backdrop");
+    var header = document.getElementById("site-header");
+    if (!toggle || !panel || !backdrop || !header) return;
+
+    var openIcon = toggle.querySelector(".nav-mobile-toggle__icon-open");
+    var closeIcon = toggle.querySelector(".nav-mobile-toggle__icon-close");
+    var menuToggleLabel = toggle.getAttribute("aria-label") || "Menu";
+    var menuCloseLabel = toggle.getAttribute("data-close-label") || "Close menu";
+
+    function syncOverlayTop() {
+      var topPx = header.getBoundingClientRect().bottom;
+      backdrop.style.top = topPx + "px";
+      panel.style.top = topPx + "px";
+    }
+
+    function isOpen() {
+      return toggle.getAttribute("aria-expanded") === "true";
+    }
+
+    function openMenu() {
+      if (!mq.matches) return;
+      syncOverlayTop();
+      panel.hidden = false;
+      panel.classList.remove("hidden");
+      backdrop.classList.remove("hidden");
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", menuCloseLabel);
+      if (openIcon) openIcon.classList.add("hidden");
+      if (closeIcon) closeIcon.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      var first = panel.querySelector("a[href^='#']");
+      if (first) first.focus();
+    }
+
+    function closeMenu() {
+      panel.classList.add("hidden");
+      panel.hidden = true;
+      backdrop.classList.add("hidden");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", menuToggleLabel);
+      if (openIcon) openIcon.classList.remove("hidden");
+      if (closeIcon) closeIcon.classList.add("hidden");
+      document.body.style.overflow = "";
+      toggle.focus();
+    }
+
+    function onToggleClick() {
+      if (isOpen()) closeMenu();
+      else openMenu();
+    }
+
+    toggle.addEventListener("click", onToggleClick);
+    backdrop.addEventListener("click", closeMenu);
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && isOpen()) closeMenu();
+    });
+
+    panel.addEventListener("click", function (e) {
+      if (e.target.closest("a")) closeMenu();
+    });
+
+    window.addEventListener("scroll", function () {
+      if (isOpen()) syncOverlayTop();
+    });
+
+    window.addEventListener("resize", function () {
+      if (!mq.matches && isOpen()) closeMenu();
+      if (isOpen()) syncOverlayTop();
+    });
+  })();
+</script>
