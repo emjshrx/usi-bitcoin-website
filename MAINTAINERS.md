@@ -1,75 +1,75 @@
-# Come aggiornare il sito (senza programmare)
+# How to update the site (without coding)
 
-Il sito è generato da questo repository. Dopo ogni modifica su branch **`main`**, GitHub Actions ricostruisce e pubblica automaticamente su **GitHub Pages**.
+The site is generated from this repository. After every change on the **`main`** branch, GitHub Actions rebuilds and publishes automatically to **GitHub Pages**.
 
-**Sezioni opzionali** (report, prossimo evento, social, team, ecc.) compaiono sul sito **solo** quando i dati necessari sono presenti (in **`config.json`** per URL e percorsi immagine; in **`site.json`** / **`site.en.json`** per testi e elenchi). Eccezione: **Cosa facciamo** è visibile con il testo introduttivo e un promemoria se l’elenco eventi è vuoto.
+**Optional sections** (report, next event, social, team, etc.) appear on the site **only** when the required data is present (in **`config.json`** for URLs and image paths; in **`site.json`** / **`site.en.json`** for text and lists). Exception: **What we do** is visible with the intro text and a reminder if the events list is empty.
 
-**Contenuti condivisi (una sola modifica):** apri **`src/data/config.json`** per brand, immagini globali, `report.url`, `nextEvent.lumaUrl`, Telegram / email / QR, URL dei moduli (team, associazione), URL dei link social (nell’ordine corrispondente alle etichette nei file lingua), `url` e `logo` dei partner (stesso ordine dei `name` nei file lingua), e `photo` dei membri del team (stesso ordine dei membri nei file lingua).
+**Shared content (single place to edit):** open **`src/data/config.json`** for brand, global images, `report.url`, `nextEvent.lumaUrl`, Telegram / email / QR, form URLs (team, association), social link URLs (in the same order as the labels in the language files), partner `url` and `logo` (same order as `name` in the language files), and team member `photo` (same order as members in the language files).
 
-**Versione inglese:** **`src/data/site.en.json`** ha la stessa struttura di **`site.json`** (solo testi tradotti). Pulsante in alto a destra nell’hero: **English** → `/en/`, **Italiano** → home. La chiave **`ui`** in ciascun file lingua contiene etichette dell’interfaccia (pulsante lingua, testi accessibilità, nota a piè pagina).
+**English version:** **`src/data/site.en.json`** has the same structure as **`site.json`** (translated text only). Hero top-right: **English** → `/en/`, **Italiano** → home. The **`ui`** key in each language file holds interface labels (language button, accessibility text, footer note).
 
-## Testi, link e immagini editabili
+## Editable text, links, and images
 
-- **`src/data/site.json`** (italiano) e **`src/data/site.en.json`** (inglese): testi, titoli di sezione, eventi passati, nomi partner, membri team (nome, ruolo, bio), pulsanti tradotti.
-- **`src/data/config.json`**: tutto ciò che è uguale per entrambe le lingue (vedi tabella sotto).
+- **`src/data/site.json`** (Italian) and **`src/data/site.en.json`** (English): copy, section titles, past events, partner names, team members (name, role, bio), translated buttons.
+- **`src/data/config.json`**: everything identical across languages (see table below).
 
-| Dove | Campo | Cosa cambia |
-|------|--------|-------------|
-| `config.json` | `brand` | Titolo principale e riga footer (es. Proof of Students Hub) |
-| `config.json` | `report.url` | Link al PDF; se vuoto la sezione report non compare |
-| `config.json` | `nextEvent.lumaUrl` | Link Luma (titolo/data/testo restano in `site.json` / `site.en.json`) |
-| `site.json` (+ EN) | `nextEvent` | `title`, `datetime`, `description`, etichetta pulsante Luma |
-| `site.json` (+ EN) | `cosaFacciamo` | Eventi passati: `events` con `title`, `date`, `description` |
-| `config.json` | `social.links[].url` | URL dei social (in `site.json` / `site.en.json` solo `label` per ogni voce, **stesso ordine**) |
-| `config.json` | `joinTeam.url` | Modulo candidatura; se vuoto la sezione non compare |
-| `config.json` | `association.formUrl` | Modulo iscrizione; se vuoto la sezione non compare |
-| `config.json` | `partners.items` | Per ogni partner: `url`, `logo` (path sotto `public/`); i **`name`** sono nei file lingua, **stesso ordine** |
-| `config.json` | `team.members[].photo` | Foto per membro; **stesso ordine** di `members` nei file lingua (`name`, `role`, `bio`) |
-| `config.json` | `join` | `joinUrl` (Telegram ecc.), `email`, `qrImage` (path sotto `public/`) |
-| `config.json` | `images` | `logo`, `usiBuilding`, `footerStrip` (path sotto `public/`; `footerStrip` vuoto per nascondere) |
-| `site.json` (+ EN) | `chiSiamo` / `missione` / `visione` | Titolo e testo delle tre schede |
+| Where | Field | What it changes |
+|------|--------|-----------------|
+| `config.json` | `brand` | Main title and footer line (e.g. Proof of Students Hub) |
+| `config.json` | `report.url` | PDF link; if empty the report section is hidden |
+| `config.json` | `nextEvent.lumaUrl` | Luma link (title/date/copy stay in `site.json` / `site.en.json`) |
+| `site.json` (+ EN) | `nextEvent` | `title`, `datetime`, `description`, Luma button label |
+| `site.json` (+ EN) | `cosaFacciamo` | Past events: `events` with `title`, `date`, `description` |
+| `config.json` | `social.links[].url` | Social URLs (in `site.json` / `site.en.json` only `label` per entry, **same order**) |
+| `config.json` | `joinTeam.url` | Application form; if empty the section is hidden |
+| `config.json` | `association.formUrl` | Membership form; if empty the section is hidden |
+| `config.json` | `partners.items` | Per partner: `url`, `logo` (path under `public/`); **`name`** values are in the language files, **same order** |
+| `config.json` | `team.members[].photo` | Photo per member; **same order** as `members` in the language files (`name`, `role`, `bio`) |
+| `config.json` | `join` | `joinUrl` (Telegram etc.), `email`, `qrImage` (path under `public/`) |
+| `config.json` | `images` | `logo`, `usiBuilding`, `footerStrip` (paths under `public/`; empty `footerStrip` to hide) |
+| `site.json` (+ EN) | `chiSiamo` / `missione` / `visione` | Title and body for the three tabs |
 | `site.json` (+ EN) | `join` | `title`, `bullets`, `tagline`, `joinButtonLabel` |
-| `site.json` (+ EN) | `seo.description` | Descrizione per motori di ricerca |
+| `site.json` (+ EN) | `seo.description` | Search engine description |
 
-Salva con **Commit changes** su `main`. Se aggiungi o togli voci (social, partner, membri team), aggiorna **sia** `config.json` **sia** i due file lingua così che gli array restino allineati (in build, numeri diversi generano un errore chiaro).
+Save with **Commit changes** on `main`. If you add or remove entries (social, partners, team members), update **both** `config.json` **and** the two language files so arrays stay aligned (at build time, mismatched counts produce a clear error).
 
-### Esempi di struttura (copia e adatta)
+### Example shapes (copy and adapt)
 
-**Evento passato** (dentro `cosaFacciamo.events`):
+**Past event** (inside `cosaFacciamo.events`):
 
 ```json
-{ "title": "Workshop Lightning", "date": "2025-10-12", "description": "Intro ai pagamenti su second layer." }
+{ "title": "Lightning workshop", "date": "2025-10-12", "description": "Intro to second-layer payments." }
 ```
 
-**Link social:** in `site.json` / `site.en.json` solo etichetta; URL in `config.json` nella voce `social.links` corrispondente (stesso indice).
+**Social link:** in `site.json` / `site.en.json` only the label; URL in `config.json` under the matching `social.links` entry (same index).
 
 ```json
 { "label": "Instagram" }
 ```
 
-**Partner:** nome traducibile nei file lingua; `url` e `logo` in `config.json` sotto `partners.items` (stesso ordine).
+**Partner:** translatable name in the language files; `url` and `logo` in `config.json` under `partners.items` (same order).
 
 ```json
-{ "name": "Nome partner" }
+{ "name": "Partner name" }
 ```
 
-**Membro team:** nome, ruolo, bio nei file lingua; `photo` in `config.json` sotto `team.members` (stesso ordine).
+**Team member:** name, role, bio in the language files; `photo` in `config.json` under `team.members` (same order).
 
 ```json
-{ "name": "Nome Cognome", "role": "Presidente", "bio": "Breve frase." }
+{ "name": "First Last", "role": "President", "bio": "Short sentence." }
 ```
 
-## Aggiungere o sostituire immagini
+## Adding or replacing images
 
-1. Carica il file in **`public/images/`** (es. `public/images/mia-foto.jpg`).
-2. In `config.json`, aggiorna il percorso relativo a `public/`, es. `images/mia-foto.jpg` (senza slash iniziale), per logo, foto team, partner, QR, ecc.
+1. Upload the file to **`public/images/`** (e.g. `public/images/my-photo.jpg`).
+2. In `config.json`, update the path relative to `public/`, e.g. `images/my-photo.jpg` (no leading slash), for logo, team photos, partners, QR, etc.
 
-## Deploy e URL
+## Deploy and URLs
 
-- **Impostazioni repository → Pages:** sorgente **GitHub Actions**.
-- Se cambi host o percorso pubblico, aggiorna **`astro.config.mjs`**: `site` = URL canonico (es. `https://bitcoinclub.ch` o `https://<utente>.github.io`), `base` = `"/"` sul dominio dedicato oppure `"/<repo>/"` su GitHub Pages senza custom domain.
+- **Repository Settings → Pages:** source **GitHub Actions**.
+- If you change host or public path, update **`astro.config.mjs`**: `site` = canonical URL (e.g. `https://bitcoinclub.ch` or `https://<user>.github.io`), `base` = `"/"` on a dedicated domain or `"/<repo>/"` on GitHub Pages without a custom domain.
 
-## Sviluppo locale (sviluppatori)
+## Local development (developers)
 
 ```bash
 npm install

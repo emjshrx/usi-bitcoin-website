@@ -1,10 +1,10 @@
-# USI Bitcoin Club — sito web
+# USI Bitcoin Club — website
 
-Sito statico per **Bitcoin USI Club**, generato con [Astro](https://astro.build/) e [Tailwind CSS](https://tailwindcss.com/), pubblicato su **GitHub Pages** tramite **GitHub Actions** ad ogni push su `main`.
+Static site for **Bitcoin USI Club**, built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/), published on **GitHub Pages** via **GitHub Actions** on every push to `main`.
 
-## Sviluppo locale
+## Local development
 
-Richiede [Node.js](https://nodejs.org/) 20+ (vedi `.nvmrc`).
+Requires [Node.js](https://nodejs.org/) 20+ (see `.nvmrc`).
 
 ```bash
 npm install
@@ -13,29 +13,29 @@ npm run dev
 
 For `npm run dev` and `npm run preview`, open the site at **`http://localhost:4321/`** (Italian default) and **`http://localhost:4321/en/`** for English.
 
-**Languages:** Italian is the default (`/`). English uses the same layout at **`/en/`**. Translatable copy lives in [`src/data/site.json`](src/data/site.json) (IT) and [`src/data/site.en.json`](src/data/site.en.json) (EN). Shared URLs and asset paths (report PDF, Luma, forms, Telegram, social URLs, logos, team photos, hero images) live once in [`src/data/config.json`](src/data/config.json); [`src/data/siteData.ts`](src/data/siteData.ts) merges them at build time.
+**Languages:** Italian is the default (`/`). English uses the same layout at **`/en/`**. Translatable copy lives in [`src/data/site.json`](src/data/site.json) (IT) and [`src/data/site.en.json`](src/data/site.en.json) (EN). Shared URLs and asset paths (report PDF, Luma, forms, Telegram, social URLs, logos, team photos, hero images) are defined once in [`src/data/config.json`](src/data/config.json); [`src/data/siteData.ts`](src/data/siteData.ts) merges them at build time.
 
-Build di produzione:
+Production build:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-Il repository include `package-lock.json`; in CI si usa `npm ci` per installazioni riproducibili.
+The repository includes `package-lock.json`; CI uses `npm ci` for reproducible installs.
 
-## Contenuti per non sviluppatori
+## Content for non-developers
 
-Vedi **[MAINTAINERS.md](./MAINTAINERS.md)**.
+See **[MAINTAINERS.md](./MAINTAINERS.md)**.
 
 ## Deploy
 
 1. Repository → **Settings** → **Pages** → **Build and deployment** → Source: **GitHub Actions**.
-2. Il workflow [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) parte su ogni push su `main`.
-3. In [`astro.config.mjs`](./astro.config.mjs) imposta `site` sull’URL canonico in produzione e `base` su `"/"` (dominio dedicato) oppure, per un progetto sotto `github.io`, sull’URL e sul path `/<repo>/` corretti.
+2. The workflow [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) runs on every push to `main`.
+3. In [`astro.config.mjs`](./astro.config.mjs), set `site` to the canonical production URL and `base` to `"/"` (dedicated domain), or for a project under `github.io`, to the correct URL and `/<repo>/` path.
 
-URL di produzione: [https://bitcoinclub.ch](https://bitcoinclub.ch) (e `/en/` per l’inglese).
+Production URL: [https://bitcoinclub.ch](https://bitcoinclub.ch) (and `/en/` for English).
 
-## Riferimenti di design
+## Design references
 
-Screenshot del deck Canva in [`docs/reference/`](./docs/reference/). PDF e immagini sorgente restano nella root del repo.
+Screenshots from the Canva deck are in [`docs/reference/`](./docs/reference/). PDFs and source images remain in the repository root.
