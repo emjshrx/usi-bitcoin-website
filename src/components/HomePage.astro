@@ -32,9 +32,12 @@ const {
 } = site;
 
 const showReport = Boolean(report.url?.trim());
-const showCosaFacciamo = cosaFacciamo.events.length > 0 || Boolean(cosaFacciamo.intro?.trim());
-const showSocial = social.links.length > 0;
+const showJoinBlock = Boolean(join.joinUrl?.trim());
 const showJoinTeam = Boolean(joinTeam.url?.trim());
+const joinAndReportTwoCol = showJoinBlock && showReport;
+const showCTASection = showJoinBlock || showReport || showJoinTeam;
+const ctaThreeCol = showJoinBlock && showJoinTeam && showReport;
+const showCosaFacciamo = cosaFacciamo.events.length > 0 || Boolean(cosaFacciamo.intro?.trim());
 const showPartners = partners.items.length > 0;
 const showTeam = team.members.length > 0;
 
@@ -46,6 +49,11 @@ const partnerReps = showPartners ? Math.max(4, Math.ceil(16 / partners.items.len
 const filteredSocialLinks = social.links.filter(
   (link) => !link.label.toLowerCase().includes("youtube") && !link.url?.toLowerCase().includes("youtube")
 );
+
+const joinTeamBtnClass =
+  "inline-flex min-h-[44px] w-fit items-center justify-center rounded-none bg-orange-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
+
+const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzycgcxzy.png");
 ---
 
 <Layout title={brand.title} description={seo.description} lang={lang}>
@@ -179,13 +187,24 @@ const filteredSocialLinks = social.links.filter(
 
     <!-- CHI SIAMO + MISSIONE + VISIONE — merged ──────────────────────── -->
     <section id="chi-siamo" class="scroll-mt-24 px-4 py-20 md:px-8 md:scroll-mt-28">
-      <div class="mx-auto max-w-4xl">
-        <h2 class="mb-8 text-3xl font-black tracking-tight text-ink md:text-4xl">
-          {chiSiamo.title}
-        </h2>
-        <p class="text-lg leading-relaxed text-ink/70">
-          {chiSiamo.body} {missione.body} {visione.body}
-        </p>
+      <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-start md:gap-12 lg:gap-14">
+        <div class="min-w-0">
+          <h2 class="mb-8 text-3xl font-black tracking-tight text-ink md:text-4xl">
+            {chiSiamo.title}
+          </h2>
+          <p class="text-lg leading-relaxed text-ink/70">
+            {chiSiamo.body} {missione.body} {visione.body}
+          </p>
+        </div>
+        <div class="min-w-0 flex justify-center md:justify-end">
+          <img
+            src={asset("/images/Gemini_Generated_Image_rmes4mrmes4mrmes.png")}
+            alt=""
+            class="h-auto w-full max-w-xl rounded-xl shadow-card md:max-w-none"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </div>
     </section>
 
@@ -240,57 +259,75 @@ const filteredSocialLinks = social.links.filter(
   <!-- ═══ DARK SECTION ════════════════════════════════════════════════════ -->
   <div class="bg-black text-white">
 
-    <!-- MISSION QUOTE ──────────────────────────────────────────────────── -->
-    <section class="px-6 py-24 md:px-16">
-      <div class="mx-auto max-w-4xl">
-        <blockquote class="text-2xl font-bold italic leading-snug text-white/85 md:text-4xl">
-          &ldquo;{missione.body}&rdquo;
-        </blockquote>
+    <!-- Mission + ways: blurred photographic backdrop ───────────────────── -->
+    <div class="relative overflow-hidden bg-black">
+      <div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+        <div
+          class="absolute inset-[-28%] bg-cover bg-center"
+          style={{
+            backgroundImage: `url('${missionWaysBackdropUrl}')`,
+            filter: "blur(110px)",
+            WebkitFilter: "blur(110px)",
+          }}
+        />
       </div>
-    </section>
+      <div class="pointer-events-none absolute inset-0 z-[1] bg-black/72" aria-hidden="true" />
 
-    <!-- WAYS WE DO COMMUNITY ────────────────────────────────────────────── -->
-    {showCosaFacciamo && cosaFacciamo.events.length > 0 && (
-      <section class="px-4 py-16 md:px-8">
-        <div class="mx-auto max-w-6xl">
-          <h2 class="mb-12 text-4xl font-black uppercase leading-tight tracking-tight text-white md:text-6xl">
-            {en
-              ? <><span>WAYS </span><span class="bg-white px-2 text-black">[WE DO]</span><span> COMMUNITY</span></>
-              : <><span>MODI </span><span class="bg-white px-2 text-black">[CHE USIAMO]</span><span> COMUNITÀ</span></>}
-          </h2>
-          <div class="grid gap-5 sm:grid-cols-2">
-            {cosaFacciamo.events.map((ev) => (
-              <article class="flex flex-col rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-orange-500/50">
-                <span class="mb-4 inline-block self-start rounded-full bg-orange-500 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">
-                  {ev.title}
-                </span>
-                {ev.date && <p class="mb-2 text-xs text-white/40">{ev.date}</p>}
-                {ev.description && (
-                  <p class="flex-1 text-[0.9rem] leading-relaxed text-white/65">{ev.description}</p>
-                )}
-                <span class="mt-5 text-sm font-bold text-orange-400">
-                  {en ? "Learn More →" : "Scopri →"}
-                </span>
-              </article>
-            ))}
-          </div>
+      <!-- MISSION QUOTE ──────────────────────────────────────────────────── -->
+      <section class="relative z-[2] px-6 py-24 md:px-16">
+        <div class="mx-auto max-w-4xl">
+          <blockquote class="text-2xl font-bold italic leading-snug text-white/85 md:text-4xl">
+            &ldquo;{missione.body}&rdquo;
+          </blockquote>
         </div>
       </section>
-    )}
+
+      <!-- WAYS WE DO COMMUNITY ────────────────────────────────────────────── -->
+      {showCosaFacciamo && cosaFacciamo.events.length > 0 && (
+        <section class="relative z-[2] px-4 pb-16 md:px-8 md:pb-24">
+          <div class="mx-auto max-w-6xl">
+            <h2 class="mb-12 text-4xl font-black uppercase leading-tight tracking-tight text-white md:text-6xl">
+              {en
+                ? <><span>WAYS </span><span class="bg-white px-2 text-black">[WE DO]</span><span> COMMUNITY</span></>
+                : <><span>MODI </span><span class="bg-white px-2 text-black">[CHE USIAMO]</span><span> COMUNITÀ</span></>}
+            </h2>
+            <div class="grid gap-5 sm:grid-cols-2">
+              {cosaFacciamo.events.map((ev) => (
+                <article class="flex flex-col rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-white/50">
+                  <span class="mb-4 inline-block self-start rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-widest text-black">
+                    {ev.title}
+                  </span>
+                  {ev.date && <p class="mb-2 text-xs text-white/40">{ev.date}</p>}
+                  {ev.description && (
+                    <p class="flex-1 text-[0.9rem] leading-relaxed text-white/65">{ev.description}</p>
+                  )}
+                  <span class="mt-5 text-sm font-bold text-white">
+                    {en ? "Learn More →" : "Scopri →"}
+                  </span>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+    </div>
 
     <!-- TEAM ─────────────────────────────────────────────────────────── -->
     {showTeam && (
-      <section id="team" class="scroll-mt-24 px-4 py-20 md:px-8 md:scroll-mt-28">
+      <section
+        id="team"
+        class="scroll-mt-24 bg-white px-4 py-20 text-ink md:px-8 md:scroll-mt-28"
+      >
         <div class="mx-auto max-w-6xl">
-          <h2 class="mb-4 text-3xl font-black tracking-tight text-white md:text-4xl">
+          <h2 class="mb-4 text-3xl font-black tracking-tight md:text-4xl">
             {team.sectionTitle}
           </h2>
           {team.intro && (
-            <p class="mb-12 max-w-2xl text-sm text-white/50">{team.intro}</p>
+            <p class="mb-12 max-w-2xl text-sm text-ink/55">{team.intro}</p>
           )}
           <ul class="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-6">
             {team.members.map((m) => (
-              <li class="flex flex-col items-center rounded-xl bg-white/5 p-5 text-center">
+              <li class="flex flex-col items-center rounded-xl border border-ink/10 bg-gray-50 p-5 text-center">
                 {m.photo?.trim() ? (
                   <img
                     src={asset(m.photo.trim())}
@@ -302,18 +339,18 @@ const filteredSocialLinks = social.links.filter(
                   />
                 ) : (
                   <div
-                    class="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-white/40"
+                    class="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-ink/10 text-sm font-bold text-ink/40"
                     aria-hidden="true"
                   >
                     {m.name.split(/\s+/).map((w: string) => w[0]).join("").slice(0, 2).toUpperCase()}
                   </div>
                 )}
-                <p class="text-sm font-bold leading-tight text-white">{m.name}</p>
-                {m.role && <p class="mt-1 text-xs text-white/55">{m.role}</p>}
+                <p class="text-sm font-bold leading-tight text-ink">{m.name}</p>
+                {m.role && <p class="mt-1 text-xs text-ink/55">{m.role}</p>}
                 {m.linkedinUrl?.trim() && (
                   <a
                     href={m.linkedinUrl.trim()}
-                    class="mt-2 text-xs font-semibold text-orange-400 underline underline-offset-2 hover:text-orange-300"
+                    class="mt-2 text-xs font-semibold text-orange-500 underline underline-offset-2 hover:text-orange-600"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -327,95 +364,244 @@ const filteredSocialLinks = social.links.filter(
       </section>
     )}
 
-    <!-- JOIN + SOCIAL ───────────────────────────────────────────────── -->
-    <section class="px-4 py-20 md:px-8">
-      <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
+    <!-- REGISTER + APPLY (MEMBER) + REPORT ─────────────────────────── -->
+    {showCTASection && (
+      <section class="px-4 py-16 md:px-8">
+        {ctaThreeCol ? (
+          <div class="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:max-w-[90rem] md:grid-cols-3 md:gap-x-10 md:gap-y-4">
+            <div class="order-1 flex flex-col gap-4 items-center text-center md:order-none md:items-start md:text-left">
+              <h2 class="text-2xl font-black tracking-tight text-white">{join.title}</h2>
+              {join.description?.trim() && (
+                <p class="text-sm text-white/55">{join.description}</p>
+              )}
+            </div>
+            <div class="order-3 flex flex-col items-center gap-4 text-center md:order-none">
+              <h2 class="text-2xl font-black tracking-tight text-white">{joinTeam.sectionTitle}</h2>
+              {joinTeam.description && (
+                <p class="text-sm text-white/55">{joinTeam.description}</p>
+              )}
+            </div>
+            <div class="order-5 flex flex-col gap-4 items-center text-center md:order-none md:items-end md:text-right">
+              <h2 class="text-2xl font-black tracking-tight text-white">{report.sectionTitle}</h2>
+              {report.description && (
+                <p class="text-sm text-white/55">{report.description}</p>
+              )}
+            </div>
+            <div class="order-2 flex justify-center md:justify-start">
+              <a
+                href={join.joinUrl!}
+                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                rel="noopener noreferrer"
+              >
+                {join.joinButtonLabel}
+              </a>
+            </div>
+            <div class="order-4 flex justify-center">
+              <a
+                href={joinTeam.url}
+                class={joinTeamBtnClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {joinTeam.buttonLabel}
+              </a>
+            </div>
+            <div class="order-6 flex justify-center md:justify-end">
+              <a
+                href={report.url}
+                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {report.buttonLabel}
+              </a>
+            </div>
+          </div>
+        ) : joinAndReportTwoCol ? (
+          <div class="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-16 md:gap-y-4">
+            <div class="order-1 flex flex-col gap-4 items-center text-center md:order-none md:items-start md:text-left">
+              <h2 class="text-2xl font-black tracking-tight text-white">{join.title}</h2>
+              {join.description?.trim() && (
+                <p class="text-sm text-white/55">{join.description}</p>
+              )}
+            </div>
+            <div class="order-3 flex flex-col gap-4 items-center text-center md:order-none md:items-end md:text-right">
+              <h2 class="text-2xl font-black tracking-tight text-white">{report.sectionTitle}</h2>
+              {report.description && (
+                <p class="text-sm text-white/55">{report.description}</p>
+              )}
+            </div>
+            <div class="order-2 flex justify-center md:justify-start">
+              <a
+                href={join.joinUrl!}
+                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                rel="noopener noreferrer"
+              >
+                {join.joinButtonLabel}
+              </a>
+            </div>
+            <div class="order-4 flex justify-center md:justify-end">
+              <a
+                href={report.url}
+                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {report.buttonLabel}
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div class="mx-auto grid max-w-6xl gap-12">
+            {showJoinBlock && showJoinTeam && !showReport && (
+              <div class="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-16 md:gap-y-4">
+                <div class="order-1 flex flex-col gap-4 items-center text-center md:order-none md:items-start md:text-left">
+                  <h2 class="text-2xl font-black tracking-tight text-white">{join.title}</h2>
+                  {join.description?.trim() && (
+                    <p class="text-sm text-white/55">{join.description}</p>
+                  )}
+                </div>
+                <div class="order-3 flex flex-col items-center gap-4 text-center md:order-none">
+                  <h2 class="text-2xl font-black tracking-tight text-white">{joinTeam.sectionTitle}</h2>
+                  {joinTeam.description && (
+                    <p class="text-sm text-white/55">{joinTeam.description}</p>
+                  )}
+                </div>
+                <div class="order-2 flex justify-center md:justify-start">
+                  <a
+                    href={join.joinUrl!}
+                    class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    rel="noopener noreferrer"
+                  >
+                    {join.joinButtonLabel}
+                  </a>
+                </div>
+                <div class="order-4 flex justify-center">
+                  <a
+                    href={joinTeam.url}
+                    class={joinTeamBtnClass}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {joinTeam.buttonLabel}
+                  </a>
+                </div>
+              </div>
+            )}
+            {showJoinTeam && showReport && !showJoinBlock && (
+              <div class="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-16 md:gap-y-4">
+                <div class="order-1 flex flex-col items-center gap-4 text-center md:order-none">
+                  <h2 class="text-2xl font-black tracking-tight text-white">{joinTeam.sectionTitle}</h2>
+                  {joinTeam.description && (
+                    <p class="text-sm text-white/55">{joinTeam.description}</p>
+                  )}
+                </div>
+                <div class="order-3 flex flex-col gap-4 items-center text-center md:order-none md:items-end md:text-right">
+                  <h2 class="text-2xl font-black tracking-tight text-white">{report.sectionTitle}</h2>
+                  {report.description && (
+                    <p class="text-sm text-white/55">{report.description}</p>
+                  )}
+                </div>
+                <div class="order-2 flex justify-center">
+                  <a
+                    href={joinTeam.url}
+                    class={joinTeamBtnClass}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {joinTeam.buttonLabel}
+                  </a>
+                </div>
+                <div class="order-4 flex justify-center md:justify-end">
+                  <a
+                    href={report.url}
+                    class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {report.buttonLabel}
+                  </a>
+                </div>
+              </div>
+            )}
+            {showJoinBlock && !showJoinTeam && !showReport && (
+              <div class="flex flex-col items-center gap-4 text-center md:items-start md:text-left">
+                <h2 class="text-2xl font-black tracking-tight text-white">{join.title}</h2>
+                {join.description?.trim() && (
+                  <p class="text-sm text-white/55">{join.description}</p>
+                )}
+                <a
+                  href={join.joinUrl!}
+                  class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  rel="noopener noreferrer"
+                >
+                  {join.joinButtonLabel}
+                </a>
+              </div>
+            )}
+            {showReport && !showJoinBlock && !showJoinTeam && (
+              <div class="flex flex-col items-center gap-4 text-center md:items-end md:text-right">
+                <h2 class="text-2xl font-black tracking-tight text-white">{report.sectionTitle}</h2>
+                {report.description && (
+                  <p class="text-sm text-white/55">{report.description}</p>
+                )}
+                <a
+                  href={report.url}
+                  class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {report.buttonLabel}
+                </a>
+              </div>
+            )}
+            {showJoinTeam && !showJoinBlock && !showReport && (
+              <div class="mx-auto flex max-w-lg flex-col items-center gap-4 text-center">
+                <h2 class="text-2xl font-black tracking-tight text-white">{joinTeam.sectionTitle}</h2>
+                {joinTeam.description && (
+                  <p class="text-sm text-white/55">{joinTeam.description}</p>
+                )}
+                <a
+                  href={joinTeam.url}
+                  class={joinTeamBtnClass}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {joinTeam.buttonLabel}
+                </a>
+              </div>
+            )}
+          </div>
+        )}
+      </section>
+    )}
 
-        <!-- Join: title + button only (no QR, no email) -->
-        <div class="flex flex-col items-start gap-6">
-          <h2 class="text-2xl font-black tracking-tight text-white">{join.title}</h2>
-          <a
-            href={join.joinUrl}
-            class="inline-flex min-h-[44px] items-center justify-center rounded-none bg-[rgb(255_4_0)] px-6 py-3 text-sm font-bold text-white transition hover:bg-[rgb(230_4_0)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgb(255_4_0)]"
-            rel="noopener noreferrer"
-          >
-            {join.joinButtonLabel}
-          </a>
-        </div>
-
-        <!-- Social: icons (no YouTube) + email below -->
+    <!-- FOOTER ─────────────────────────────────────────────────────── -->
+    <footer class="border-t border-white/10 px-4 py-5 md:px-8">
+      <div class="mx-auto flex max-w-6xl flex-row flex-wrap items-center justify-between gap-x-6 gap-y-2">
+        <p class="min-w-0 text-xs text-white/30">{ui.copyrightNotice}</p>
         {(filteredSocialLinks.length > 0 || join.email) && (
-          <div class="flex flex-col gap-5">
+          <div class="flex flex-wrap items-center justify-end gap-x-4 gap-y-1">
             {filteredSocialLinks.length > 0 && (
-              <>
-                <p class="text-xs font-bold uppercase tracking-widest text-white/35">{social.sectionTitle}</p>
-                {social.intro && <p class="text-[0.9rem] text-white/55">{social.intro}</p>}
-                <ul class="flex flex-wrap gap-2">
-                  {filteredSocialLinks.map((link) => (
-                    <li>
-                      <SocialIconLink url={link.url} label={link.label} dark={true} />
-                    </li>
-                  ))}
-                </ul>
-              </>
+              <ul class="flex flex-wrap items-center gap-2" aria-label={social.sectionTitle}>
+                {filteredSocialLinks.map((link) => (
+                  <li>
+                    <SocialIconLink url={link.url} label={link.label} dark={true} />
+                  </li>
+                ))}
+              </ul>
             )}
             {join.email && (
               <a
                 href={`mailto:${join.email}`}
-                class="break-all text-sm font-medium text-white/50 underline underline-offset-2 transition hover:text-white/80"
+                class="max-w-[min(100%,14rem)] truncate text-xs font-medium text-white/50 underline underline-offset-2 transition hover:text-white/80 sm:max-w-none sm:whitespace-nowrap"
               >
                 {join.email}
               </a>
             )}
           </div>
         )}
-
       </div>
-    </section>
-
-    <!-- JOIN TEAM CTA ───────────────────────────────────────────────── -->
-    {showJoinTeam && (
-      <section class="px-4 py-16 text-center md:px-8">
-        <div class="mx-auto max-w-2xl">
-          <h2 class="mb-4 text-3xl font-black tracking-tight text-white md:text-4xl">{joinTeam.sectionTitle}</h2>
-          {joinTeam.description && (
-            <p class="mb-8 text-[0.95rem] leading-relaxed text-white/60">{joinTeam.description}</p>
-          )}
-          <a
-            href={joinTeam.url}
-            class="inline-flex min-h-[48px] items-center justify-center rounded-none bg-[rgb(255_4_0)] px-8 py-3 text-sm font-bold text-white transition hover:bg-[rgb(230_4_0)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgb(255_4_0)]"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {joinTeam.buttonLabel}
-          </a>
-        </div>
-      </section>
-    )}
-
-    <!-- REPORT ─────────────────────────────────────────────────────── -->
-    {showReport && (
-      <section class="px-4 pb-20 pt-8 md:px-8">
-        <div class="mx-auto max-w-6xl">
-          <h2 class="mb-4 text-2xl font-black tracking-tight text-white">{report.sectionTitle}</h2>
-          {report.description && (
-            <p class="mb-6 text-sm text-white/55">{report.description}</p>
-          )}
-          <a
-            href={report.url}
-            class="inline-flex min-h-[44px] items-center justify-center rounded-none bg-[rgb(255_4_0)] px-6 py-3 text-sm font-bold text-white transition hover:bg-[rgb(230_4_0)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgb(255_4_0)]"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {report.buttonLabel}
-          </a>
-        </div>
-      </section>
-    )}
-
-    <!-- FOOTER ─────────────────────────────────────────────────────── -->
-    <footer class="border-t border-white/10 px-4 py-8 text-center">
-      <p class="text-xs text-white/30">{ui.copyrightNotice}</p>
     </footer>
 
   </div><!-- /dark section -->

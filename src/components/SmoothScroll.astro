@@ -8,25 +8,29 @@ import "lenis/dist/lenis.css";
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reducedMotion) {
     const layers = Array.from(document.querySelectorAll("[data-parallax]"));
-    const mq = window.matchMedia("(min-width: 768px)");
-    let parallaxMd = mq.matches;
-    mq.addEventListener("change", () => {
-      parallaxMd = mq.matches;
-      if (!parallaxMd) {
-        for (const el of layers) {
-          el.style.transform = "";
-        }
-      }
-    });
+    const mqMobile = window.matchMedia("(max-width: 767px)");
+
+    const speedFor = (el) => {
+      const base = parseFloat(el.dataset.speed ?? "0");
+      if (!mqMobile.matches) return base;
+      const rawMobile = el.dataset.speedMobile;
+      if (rawMobile != null && rawMobile !== "") return parseFloat(rawMobile);
+      return base * 0.68;
+    };
+
+    let speeds = layers.map(speedFor);
+    const refreshSpeeds = () => {
+      speeds = layers.map(speedFor);
+    };
+    mqMobile.addEventListener("change", refreshSpeeds);
+    window.addEventListener("resize", refreshSpeeds, { passive: true });
 
     const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, autoRaf: true });
 
     lenis.on("scroll", (e) => {
-      if (!parallaxMd) return;
       const { scroll } = e;
-      for (const el of layers) {
-        const speed = parseFloat(el.dataset.speed || "0");
-        el.style.transform = `translate3d(0, ${scroll * speed}px, 0)`;
+      for (let i = 0; i < layers.length; i++) {
+        layers[i].style.transform = `translate3d(0, ${scroll * speeds[i]}px, 0)`;
       }
     });
   }

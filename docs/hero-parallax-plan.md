@@ -36,14 +36,19 @@ Speeds are translateY multipliers applied to `lenis.scroll`; later (foreground) 
 
 Each layer must be **inpainted behind the layers in front of it** so no holes appear when the layers separate on scroll. Aspect ratio of each PNG/WebP should roughly match the original photo, with **~20% extra vertical bleed** above and below the visible area so translation never exposes the file edge.
 
-| File | Content | Transparency | Approx. size |
-| --- | --- | --- | --- |
-| `hero-sky.webp` (+ `.jpg` fallback) | Sky + distant haze | None — back layer | ~2400×1400 |
-| `hero-mountains-far.webp` (+ `.png` fallback) | Far mountain ridge silhouette | Transparent above the ridge | ~2400×900 |
-| `hero-mountains-near.webp` (+ `.png` fallback) | Near hills + town strip | Transparent above the silhouette | ~2400×700 |
-| `hero-lake.webp` (+ `.png` fallback) | Lake surface + foreground city | Transparent above the waterline | ~2400×900 |
+Because parallax runs on **mobile too**, ship two resolutions per layer (desktop + mobile) and select via `srcset` so phones don't download 2400px assets:
 
-Combined budget: keep total weight under **~450 KB** (WebP quality ~75, PNG only as fallback).
+| Layer | Desktop file | Mobile file | Transparency |
+| --- | --- | --- | --- |
+| Sky | `hero-sky.webp` (~2400×1400) + `.jpg` fallback | `hero-sky-sm.webp` (~960×560) | None — back layer |
+| Far mountains | `hero-mountains-far.webp` (~2400×900) + `.png` fallback | `hero-mountains-far-sm.webp` (~960×360) | Transparent above the ridge |
+| Near mountains | `hero-mountains-near.webp` (~2400×700) + `.png` fallback | `hero-mountains-near-sm.webp` (~960×280) | Transparent above the silhouette |
+| Lake / foreground | `hero-lake.webp` (~2400×900) + `.png` fallback | `hero-lake-sm.webp` (~960×360) | Transparent above the waterline |
+
+Budgets (WebP quality ~75, raster fallback only when WebP unsupported):
+
+- Mobile total: **≤ 180 KB**
+- Desktop total: **≤ 450 KB**
 
 ---
 
@@ -59,16 +64,28 @@ npm install lenis
 
 ## 3. Config + types
 
-Update [`src/data/config.json`](../src/data/config.json) — change `images.hero` from a string to an object:
+Update [`src/data/config.json`](../src/data/config.json) — change `images.hero` from a string to a layered object, with `desktop` + `mobile` paths per layer:
 
 ```json
 "images": {
   "logo": "images/pos_hub_logo.jpeg",
   "hero": {
-    "sky": "images/hero/hero-sky.webp",
-    "mountainsFar": "images/hero/hero-mountains-far.webp",
-    "mountainsNear": "images/hero/hero-mountains-near.webp",
-    "lake": "images/hero/hero-lake.webp"
+    "sky": {
+      "desktop": "images/hero/hero-sky.webp",
+      "mobile": "images/hero/hero-sky-sm.webp"
+    },
+    "mountainsFar": {
+      "desktop": "images/hero/hero-mountains-far.webp",
+      "mobile": "images/hero/hero-mountains-far-sm.webp"
+    },
+    "mountainsNear": {
+      "desktop": "images/hero/hero-mountains-near.webp",
+      "mobile": "images/hero/hero-mountains-near-sm.webp"
+    },
+    "lake": {
+      "desktop": "images/hero/hero-lake.webp",
+      "mobile": "images/hero/hero-lake-sm.webp"
+    }
   }
 }
 ```
@@ -96,22 +113,47 @@ const { sky, mountainsFar, mountainsNear, lake } = site.images.hero;
 ---
 
 <section id="hero" class="relative overflow-hidden min-h-[100svh]" aria-label={site.brand.title}>
-  <div data-parallax data-speed="0.05" class="hero-layer" aria-hidden="true">
-    <img src={asset(sky)} alt="" fetchpriority="high" loading="eager" />
+  <div data-parallax data-speed-desktop="0.05" data-speed-mobile="0.04" class="hero-layer" aria-hidden="true">
+    <img
+      src={asset(sky.desktop)}
+      srcset={`${asset(sky.mobile)} 960w, ${asset(sky.desktop)} 2400w`}
+      sizes="100vw"
+      alt=""
+      fetchpriority="high"
+      loading="eager"
+    />
   </div>
-  <div data-parallax data-speed="0.15" class="hero-layer" aria-hidden="true">
-    <img src={asset(mountainsFar)} alt="" loading="eager" />
+  <div data-parallax data-speed-desktop="0.15" data-speed-mobile="0.10" class="hero-layer" aria-hidden="true">
+    <img
+      src={asset(mountainsFar.desktop)}
+      srcset={`${asset(mountainsFar.mobile)} 960w, ${asset(mountainsFar.desktop)} 2400w`}
+      sizes="100vw"
+      alt=""
+      loading="eager"
+    />
   </div>
-  <div data-parallax data-speed="0.30" class="hero-layer" aria-hidden="true">
-    <img src={asset(mountainsNear)} alt="" loading="eager" />
+  <div data-parallax data-speed-desktop="0.30" data-speed-mobile="0.20" class="hero-layer" aria-hidden="true">
+    <img
+      src={asset(mountainsNear.desktop)}
+      srcset={`${asset(mountainsNear.mobile)} 960w, ${asset(mountainsNear.desktop)} 2400w`}
+      sizes="100vw"
+      alt=""
+      loading="eager"
+    />
   </div>
-  <div data-parallax data-speed="0.50" class="hero-layer" aria-hidden="true">
-    <img src={asset(lake)} alt="" loading="eager" />
+  <div data-parallax data-speed-desktop="0.50" data-speed-mobile="0.32" class="hero-layer" aria-hidden="true">
+    <img
+      src={asset(lake.desktop)}
+      srcset={`${asset(lake.mobile)} 960w, ${asset(lake.desktop)} 2400w`}
+      sizes="100vw"
+      alt=""
+      loading="eager"
+    />
   </div>
 
   <div class="absolute inset-0 bg-black/35" aria-hidden="true"></div>
 
-  <div data-parallax data-speed="0.20" class="relative z-10 flex h-full w-full items-end px-6 pb-20 md:px-16">
+  <div data-parallax data-speed-desktop="0.20" data-speed-mobile="0.14" class="relative z-10 flex h-full w-full items-end px-6 pb-20 md:px-16">
     <div>
       <h1 class="text-6xl font-black uppercase leading-none tracking-tight text-white drop-shadow-xl md:text-8xl lg:text-9xl">
         {site.brand.title}
@@ -128,7 +170,7 @@ const { sky, mountainsFar, mountainsNear, lake } = site.images.hero;
 </section>
 
 <style>
-  .hero-layer { position: absolute; inset: -10% 0; will-change: transform; }
+  .hero-layer { position: absolute; inset: -10% 0; will-change: transform; transform: translate3d(0, 0, 0); backface-visibility: hidden; }
   .hero-layer img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 </style>
 ```
@@ -143,9 +185,15 @@ Then in [`src/components/HomePage.astro`](../src/components/HomePage.astro) repl
 
 ---
 
-## 5. Smooth-scroll + parallax init
+## 5. Smooth-scroll + parallax init (desktop & mobile)
 
 Add a single global module script. Recommended: new `src/components/SmoothScroll.astro` mounted once in [`src/layouts/Layout.astro`](../src/layouts/Layout.astro) just before `<slot />` closes (so it ships site-wide).
+
+Parallax must run on **both desktop and mobile**. We do this by:
+
+1. Initializing Lenis with `smoothWheel: true` for desktop and `syncTouch: true` so touch scroll on phones also flows through Lenis's RAF loop and emits a single unified `scroll` stream.
+2. Picking the per-layer speed from `data-speed-desktop` or `data-speed-mobile` based on a `(max-width: 767px)` media query, so the parallax range stays sensible on small viewports (where the section is much shorter and aggressive translations would overshoot the bleed).
+3. Updating speeds on resize / orientation change.
 
 ```astro
 ---
@@ -156,13 +204,37 @@ Add a single global module script. Recommended: new `src/components/SmoothScroll
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reduce) {
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-    const layers = document.querySelectorAll<HTMLElement>("[data-parallax]");
+    const mqMobile = window.matchMedia("(max-width: 767px)");
+
+    const lenis = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+      syncTouch: true,
+      syncTouchLerp: 0.075,
+      touchMultiplier: 1,
+    });
+
+    const layers = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-parallax]"),
+    );
+
+    let speeds: number[] = [];
+    const computeSpeeds = () => {
+      const isMobile = mqMobile.matches;
+      speeds = layers.map((el) => {
+        const raw = isMobile
+          ? el.dataset.speedMobile ?? el.dataset.speed
+          : el.dataset.speedDesktop ?? el.dataset.speed;
+        return parseFloat(raw || "0");
+      });
+    };
+    computeSpeeds();
+    mqMobile.addEventListener("change", computeSpeeds);
+    window.addEventListener("resize", computeSpeeds, { passive: true });
 
     lenis.on("scroll", ({ scroll }: { scroll: number }) => {
-      for (const el of layers) {
-        const speed = parseFloat(el.dataset.speed || "0");
-        el.style.transform = `translate3d(0, ${scroll * speed}px, 0)`;
+      for (let i = 0; i < layers.length; i++) {
+        layers[i].style.transform = `translate3d(0, ${scroll * speeds[i]}px, 0)`;
       }
     });
 
@@ -178,9 +250,11 @@ Add a single global module script. Recommended: new `src/components/SmoothScroll
 Notes:
 
 - This must be a module `<script>` (no `is:inline`) so Astro bundles the `lenis` import.
+- `syncTouch: true` makes Lenis drive touch-scroll through its own RAF, which keeps the parallax transforms in lockstep with finger movement on iOS/Android instead of stuttering between native scroll events. `syncTouchLerp` (~0.075) tames any "rubbery" feel.
+- Mobile speeds are deliberately lower (~60–65% of desktop values) because the hero section is shorter on phones, so the same scroll distance covers proportionally more of the viewport.
 - When `prefers-reduced-motion: reduce` is on we skip Lenis entirely; layers stay static, page uses the browser's native scroll.
-- The existing scroll-spy in [`src/components/SiteHeader.astro`](../src/components/SiteHeader.astro) (lines 252–381) and the smooth-anchor scrolling already in place keep working — Lenis dispatches real `scroll` events on `window` and the `IntersectionObserver` continues to fire normally.
-- If mobile parallax feels jittery during QA, gate the parallax block (not Lenis itself) behind `window.matchMedia("(min-width: 768px)").matches`.
+- The existing scroll-spy in [`src/components/SiteHeader.astro`](../src/components/SiteHeader.astro) (lines 252–381) and the smooth-anchor scrolling already in place keep working — Lenis dispatches real `scroll` events on `window` and the `IntersectionObserver` continues to fire normally on both desktop and mobile.
+- iOS-specific: the section uses `min-h-[100svh]` (small viewport height) so the address-bar collapse doesn't change the section height mid-scroll and cause layer jumps. `will-change: transform` + `translate3d(0,0,0)` baseline (set in §4 styles) promotes each layer to its own compositor layer for smooth GPU-accelerated transforms.
 
 ---
 
@@ -203,11 +277,12 @@ Notes:
 
 ## Resource checklist
 
-- [ ] 4 transparent layered images (WebP + raster fallback) under `public/images/hero/` — produced manually
+- [ ] 4 desktop layered images **and** 4 mobile-resolution variants (WebP + raster fallback) under `public/images/hero/` — produced manually
 - [ ] `lenis` npm dep added
-- [ ] `images.hero` in [`src/data/config.json`](../src/data/config.json) reshaped from string to object
+- [ ] `images.hero` in [`src/data/config.json`](../src/data/config.json) reshaped from string to object of `{ desktop, mobile }` per layer
 - [ ] `SiteData` type updated in [`src/data/siteData.ts`](../src/data/siteData.ts)
-- [ ] New component `src/components/HeroParallax.astro`
+- [ ] New component `src/components/HeroParallax.astro` with `srcset` for each layer and `data-speed-desktop` / `data-speed-mobile` attributes
 - [ ] Edit [`src/components/HomePage.astro`](../src/components/HomePage.astro) to use `<HeroParallax />` and drop the inline parallax script
-- [ ] New `src/components/SmoothScroll.astro` mounted in [`src/layouts/Layout.astro`](../src/layouts/Layout.astro)
-- [ ] QA: reduced-motion fallback, mobile behavior, scroll-spy still works, no horizontal overflow, image edges hidden during scroll
+- [ ] New `src/components/SmoothScroll.astro` (with `syncTouch: true` for mobile) mounted in [`src/layouts/Layout.astro`](../src/layouts/Layout.astro)
+- [ ] QA desktop: reduced-motion fallback, scroll-spy still works, no horizontal overflow, image edges hidden during scroll
+- [ ] QA mobile (real iOS Safari + Android Chrome): smooth touch parallax with `syncTouch`, no juddery bottom-bar resize, no white gap below lake layer at full scroll, mobile srcset variants actually load (verify in DevTools network panel)

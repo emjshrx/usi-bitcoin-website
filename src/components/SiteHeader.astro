@@ -111,7 +111,7 @@ const menuCloseLabel = lang === "en" ? "Close menu" : "Chiudi menu";
         <button
           type="button"
           id="nav-mobile-toggle"
-          class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-none border-0 bg-[rgb(255_4_0)] text-white transition hover:bg-[rgb(230_4_0)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgb(255_4_0)]"
+          class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-none border border-ink/20 text-ink transition hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
           aria-expanded="false"
           aria-controls="nav-mobile-panel"
           aria-label={menuToggleLabel}
@@ -142,7 +142,7 @@ const menuCloseLabel = lang === "en" ? "Close menu" : "Chiudi menu";
         {join.joinUrl && (
           <a
             href={join.joinUrl}
-            class="inline-flex min-h-[40px] shrink-0 items-center justify-center whitespace-nowrap rounded-none bg-[rgb(255_4_0)] px-4 py-2 text-sm font-bold text-white transition hover:bg-[rgb(230_4_0)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgb(255_4_0)]"
+            class="inline-flex min-h-[40px] shrink-0 items-center justify-center whitespace-nowrap rounded-none bg-orange-500 px-4 py-2 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
             rel="noopener noreferrer"
           >
             {join.joinButtonLabel}
@@ -222,7 +222,7 @@ const menuCloseLabel = lang === "en" ? "Close menu" : "Chiudi menu";
       {join.joinUrl && (
         <a
           href={join.joinUrl}
-          class="inline-flex min-h-[48px] w-full items-center justify-center rounded-none bg-[rgb(255_4_0)] px-4 py-3 text-sm font-bold text-white transition hover:bg-[rgb(230_4_0)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgb(255_4_0)]"
+          class="inline-flex min-h-[48px] w-full items-center justify-center rounded-none bg-orange-500 px-4 py-3 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
           rel="noopener noreferrer"
         >
           {join.joinButtonLabel}

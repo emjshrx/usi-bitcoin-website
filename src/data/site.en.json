@@ -44,7 +44,8 @@
   },
   "join": {
     "title": "Register for the club",
-    "joinButtonLabel": "Join the group"
+    "description": "Register for the club (Telegram group).",
+    "joinButtonLabel": "Register for the club"
   },
   "social": {
     "sectionTitle": "Social",

@@ -44,7 +44,8 @@
   },
   "join": {
     "title": "Iscriviti al club",
-    "joinButtonLabel": "Unisciti al gruppo"
+    "description": "Iscriviti al club (gruppo Telegram).",
+    "joinButtonLabel": "Iscriviti al club"
   },
   "social": {
     "sectionTitle": "Social",

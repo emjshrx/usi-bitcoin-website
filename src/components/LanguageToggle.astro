@@ -12,7 +12,7 @@ interface Props {
 
 const { lang, label, ariaLabel, extraClass } = Astro.props;
 const baseClass =
-  "inline-flex min-h-[40px] min-w-[40px] items-center justify-center rounded-none border border-[rgb(255_4_0)] bg-[rgb(255_4_0)] px-3 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition hover:border-[rgb(230_4_0)] hover:bg-[rgb(230_4_0)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgb(255_4_0)] md:text-sm";
+  "inline-flex min-h-[40px] min-w-[40px] items-center justify-center rounded-none border border-ink/25 bg-card px-3 py-2 text-xs font-semibold uppercase tracking-wide text-ink shadow-sm transition hover:border-ink hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink md:text-sm";
 const href = lang === "it" ? withBase("en/") : withBase("");
 const hrefLang = lang === "it" ? "en" : "it";
 ---
