@@ -1,4 +1,5 @@
 ---
+import SmoothScroll from "../components/SmoothScroll.astro";
 import { withBase } from "../utils/withBase";
 
 interface Props {
@@ -35,6 +36,7 @@ const canonical =
     class="min-h-screen bg-page pt-[var(--site-header-height,5.5rem)] font-sans text-ink antialiased"
   >
     <slot />
+    <SmoothScroll />
   </body>
 </html>
 

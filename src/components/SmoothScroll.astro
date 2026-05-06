@@ -1,0 +1,33 @@
+---
+import "lenis/dist/lenis.css";
+---
+
+<script>
+  import Lenis from "lenis";
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reducedMotion) {
+    const layers = Array.from(document.querySelectorAll("[data-parallax]"));
+    const mq = window.matchMedia("(min-width: 768px)");
+    let parallaxMd = mq.matches;
+    mq.addEventListener("change", () => {
+      parallaxMd = mq.matches;
+      if (!parallaxMd) {
+        for (const el of layers) {
+          el.style.transform = "";
+        }
+      }
+    });
+
+    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, autoRaf: true });
+
+    lenis.on("scroll", (e) => {
+      if (!parallaxMd) return;
+      const { scroll } = e;
+      for (const el of layers) {
+        const speed = parseFloat(el.dataset.speed || "0");
+        el.style.transform = `translate3d(0, ${scroll * speed}px, 0)`;
+      }
+    });
+  }
+</script>

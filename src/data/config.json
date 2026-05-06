@@ -4,7 +4,11 @@
   },
   "images": {
     "logo": "images/pos_hub_logo.jpeg",
-    "hero": "images/orientamento-correzione_obiettivo_-_9.jpg"
+    "hero": {
+      "sky": "images/sky.png",
+      "hillsLake": "images/hills+lake.png",
+      "trees": "images/trees.png"
+    }
   },
   "report": {
     "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",

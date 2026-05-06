@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import HeroParallax from "./HeroParallax.astro";
 import SocialIconLink from "./SocialIconLink.astro";
 import SiteHeader from "./SiteHeader.astro";
 import { withBase } from "../utils/withBase";
@@ -37,7 +38,9 @@ const showJoinTeam = Boolean(joinTeam.url?.trim());
 const showPartners = partners.items.length > 0;
 const showTeam = team.members.length > 0;
 
-const heroImage = site.images.hero?.trim() ? asset(site.images.hero.trim()) : null;
+// Repeat enough times that the marquee is always "full" even with few partners.
+// Target ~16 items minimum (tuned by eye); clamp to at least 4 repeats.
+const partnerReps = showPartners ? Math.max(4, Math.ceil(16 / partners.items.length)) : 0;
 
 // Filter out YouTube from social links
 const filteredSocialLinks = social.links.filter(
@@ -50,39 +53,126 @@ const filteredSocialLinks = social.links.filter(
   <SiteHeader site={site} lang={lang} showTeam={showTeam} showPartners={showPartners} />
 
   <!-- ═══ HERO ════════════════════════════════════════════════════════════ -->
-  <section
-    class="relative flex items-end overflow-hidden"
-    style="min-height: 72vh;"
-    aria-label={brand.title}
-  >
-    <!-- Parallax background -->
-    <div
-      id="hero-bg"
-      class="absolute left-0 right-0 will-change-transform"
-      style={`top: -40%; height: 180%; ${heroImage ? `background: url('${heroImage}') center/cover no-repeat;` : "background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 50%, #1a365d 100%);"}`}
-      aria-hidden="true"
-    >
-      <div class="absolute inset-0 bg-black/45"></div>
-    </div>
+  <HeroParallax site={site} lang={lang}>
+    {showPartners && (
+      <div
+        id="partner"
+        class="relative z-20 mt-auto pb-6"
+        aria-label={partners.sectionTitle}
+      >
+        <div class="w-full">
+          <div class="partner-carousel">
+            <div class="partner-carousel__viewport" role="region" aria-label={partners.sectionTitle}>
+              <ul class="partner-carousel__track px-4 md:px-8" aria-label={partners.sectionTitle}>
+                {Array.from({ length: partnerReps }).map((_, repIdx) =>
+                  partners.items.map((p) => (
+                    <li class="partner-carousel__item" aria-hidden={repIdx > 0 ? "true" : undefined}>
+                      {p.logo?.trim() ? (
+                        p.url?.trim() ? (
+                          <a
+                            href={p.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={p.name}
+                            tabIndex={repIdx > 0 ? -1 : undefined}
+                          >
+                            <img
+                              src={asset(p.logo.trim())}
+                              alt={repIdx > 0 ? "" : p.name}
+                              class="h-9 w-auto max-w-full object-contain brightness-0 invert opacity-80 transition hover:opacity-100"
+                              loading="lazy"
+                            />
+                          </a>
+                        ) : (
+                          <img
+                            src={asset(p.logo.trim())}
+                            alt={repIdx > 0 ? "" : p.name}
+                            class="h-9 w-auto max-w-full object-contain brightness-0 invert opacity-80"
+                            loading="lazy"
+                          />
+                        )
+                      ) : (
+                        p.url?.trim() ? (
+                          <a
+                            href={p.url}
+                            class="text-sm font-semibold text-white/80 hover:text-white"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            tabIndex={repIdx > 0 ? -1 : undefined}
+                            aria-hidden={repIdx > 0 ? "true" : undefined}
+                          >
+                            {p.name}
+                          </a>
+                        ) : (
+                          <span class="text-sm font-semibold text-white/80" aria-hidden={repIdx > 0 ? "true" : undefined}>
+                            {p.name}
+                          </span>
+                        )
+                      )}
+                    </li>
+                  ))
+                )}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+  </HeroParallax>
 
-    <!-- Bottom fade to white -->
-    <div
-      class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent"
-      aria-hidden="true"
-    ></div>
+  <style>
+    .partner-carousel__viewport {
+      position: relative;
+      overflow: hidden;
+    }
 
-    <!-- Hero text -->
-    <div class="relative z-10 w-full px-6 pb-20 md:px-16">
-      <h1 class="text-6xl font-black uppercase leading-none tracking-tight text-white drop-shadow-xl md:text-8xl lg:text-9xl">
-        {brand.title}
-      </h1>
-      <p class="mt-4 text-base font-semibold tracking-wide text-white/65 drop-shadow md:text-lg">
-        {en
-          ? "First Bitcoin University Club in Switzerland · USI · Lugano"
-          : "Primo Bitcoin University Club in Svizzera · USI · Lugano"}
-      </p>
-    </div>
-  </section>
+    .partner-carousel__track {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      gap: 14px;
+      will-change: transform;
+      animation: partner-marquee 28s linear infinite;
+      padding: 6px 2px;
+    }
+
+    .partner-carousel__item {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 6px;
+      white-space: nowrap;
+    }
+
+    .partner-carousel:hover .partner-carousel__track {
+      animation-play-state: paused;
+    }
+
+    @keyframes partner-marquee {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+      to {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .partner-carousel__track {
+        animation: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 10px;
+      }
+      .partner-carousel__track > li {
+        scroll-snap-align: start;
+      }
+      .partner-carousel:hover .partner-carousel__track {
+        animation-play-state: running;
+      }
+    }
+  </style>
 
   <!-- ═══ LIGHT SECTION ═══════════════════════════════════════════════════ -->
   <div class="bg-white">
@@ -237,47 +327,6 @@ const filteredSocialLinks = social.links.filter(
       </section>
     )}
 
-    <!-- PARTNERS ─────────────────────────────────────────────────────── -->
-    {showPartners && (
-      <section id="partner" class="scroll-mt-24 px-4 py-16 md:px-8 md:scroll-mt-28">
-        <div class="mx-auto max-w-6xl">
-          <p class="mb-8 text-xs font-bold uppercase tracking-widest text-white/35">{partners.sectionTitle}</p>
-          {partners.intro && <p class="mb-8 text-sm text-white/50">{partners.intro}</p>}
-          <ul class="grid grid-cols-2 gap-5 sm:grid-cols-4">
-            {partners.items.map((p) => (
-              <li class="flex items-center justify-center rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-orange-500/40">
-                {p.logo?.trim() ? (
-                  p.url?.trim() ? (
-                    <a href={p.url} target="_blank" rel="noopener noreferrer" aria-label={p.name}>
-                      <img
-                        src={asset(p.logo.trim())}
-                        alt={p.name}
-                        class="h-10 w-auto max-w-full object-contain brightness-0 invert opacity-70 transition hover:opacity-100"
-                        loading="lazy"
-                      />
-                    </a>
-                  ) : (
-                    <img
-                      src={asset(p.logo.trim())}
-                      alt={p.name}
-                      class="h-10 w-auto max-w-full object-contain brightness-0 invert opacity-70"
-                      loading="lazy"
-                    />
-                  )
-                ) : (
-                  p.url?.trim() ? (
-                    <a href={p.url} class="text-sm font-semibold text-white/70 hover:text-white" target="_blank" rel="noopener noreferrer">{p.name}</a>
-                  ) : (
-                    <span class="text-sm font-semibold text-white/70">{p.name}</span>
-                  )
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    )}
-
     <!-- JOIN + SOCIAL ───────────────────────────────────────────────── -->
     <section class="px-4 py-20 md:px-8">
       <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
@@ -287,7 +336,7 @@ const filteredSocialLinks = social.links.filter(
           <h2 class="text-2xl font-black tracking-tight text-white">{join.title}</h2>
           <a
             href={join.joinUrl}
-            class="inline-flex min-h-[44px] items-center justify-center rounded-full bg-orange-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+            class="inline-flex min-h-[44px] items-center justify-center rounded-none bg-[rgb(255_4_0)] px-6 py-3 text-sm font-bold text-white transition hover:bg-[rgb(230_4_0)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgb(255_4_0)]"
             rel="noopener noreferrer"
           >
             {join.joinButtonLabel}
@@ -334,7 +383,7 @@ const filteredSocialLinks = social.links.filter(
           )}
           <a
             href={joinTeam.url}
-            class="inline-flex min-h-[48px] items-center justify-center rounded-full bg-orange-500 px-8 py-3 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+            class="inline-flex min-h-[48px] items-center justify-center rounded-none bg-[rgb(255_4_0)] px-8 py-3 text-sm font-bold text-white transition hover:bg-[rgb(230_4_0)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgb(255_4_0)]"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -354,7 +403,7 @@ const filteredSocialLinks = social.links.filter(
           )}
           <a
             href={report.url}
-            class="inline-flex min-h-[44px] items-center justify-center rounded-full border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            class="inline-flex min-h-[44px] items-center justify-center rounded-none bg-[rgb(255_4_0)] px-6 py-3 text-sm font-bold text-white transition hover:bg-[rgb(230_4_0)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgb(255_4_0)]"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -372,21 +421,3 @@ const filteredSocialLinks = social.links.filter(
   </div><!-- /dark section -->
 
 </Layout>
-
-<script is:inline>
-  (function () {
-    var el = document.getElementById('hero-bg');
-    if (!el) return;
-    var ticking = false;
-    function update() {
-      el.style.transform = 'translateY(' + (window.scrollY * 0.35) + 'px)';
-      ticking = false;
-    }
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
-    }, { passive: true });
-  })();
-</script>
