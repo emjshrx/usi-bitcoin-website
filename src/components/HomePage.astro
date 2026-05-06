@@ -329,17 +329,20 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
             {team.members.map((m) => (
               <li class="flex flex-col items-center rounded-xl border border-ink/10 bg-gray-50 p-5 text-center">
                 {m.photo?.trim() ? (
-                  <img
-                    src={asset(m.photo.trim())}
-                    alt=""
-                    width="120"
-                    height="120"
-                    class="mb-3 h-16 w-16 rounded-full object-cover"
-                    loading="lazy"
-                  />
+                  <span class="mb-3 inline-flex h-16 w-16 shrink-0 isolate overflow-hidden rounded-lg bg-[hsl(24,48%,52%)]">
+                    <img
+                      src={asset(m.photo.trim())}
+                      alt=""
+                      width="120"
+                      height="120"
+                      class="h-full w-full object-cover grayscale contrast-[1.35] brightness-[0.82] mix-blend-luminosity"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
                 ) : (
                   <div
-                    class="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-ink/10 text-sm font-bold text-ink/40"
+                    class="mb-3 flex aspect-square h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-ink/10 text-sm font-bold text-ink/40"
                     aria-hidden="true"
                   >
                     {m.name.split(/\s+/).map((w: string) => w[0]).join("").slice(0, 2).toUpperCase()}

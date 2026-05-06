@@ -60,12 +60,12 @@
   },
   "team": {
     "members": [
-      { "photo": "images/placeholders/avatar-1.svg", "linkedinUrl": "https://www.linkedin.com/in/example-giulia-fabbri" },
-      { "photo": "images/placeholders/avatar-2.svg", "linkedinUrl": "https://www.linkedin.com/in/example-luca-martini" },
-      { "photo": "images/placeholders/avatar-3.svg", "linkedinUrl": "https://www.linkedin.com/in/example-sara-nguyen" },
-      { "photo": "images/placeholders/avatar-4.svg", "linkedinUrl": "https://www.linkedin.com/in/example-tommaso-keller" },
-      { "photo": "images/placeholders/avatar-5.svg", "linkedinUrl": "https://www.linkedin.com/in/example-nina-costa" },
-      { "photo": "images/placeholders/avatar-6.svg", "linkedinUrl": "https://www.linkedin.com/in/example-marco-rossi" }
+      { "photo": "https://i.pravatar.cc/160?img=1", "linkedinUrl": "https://www.linkedin.com/in/example-giulia-fabbri" },
+      { "photo": "https://i.pravatar.cc/160?img=2", "linkedinUrl": "https://www.linkedin.com/in/example-luca-martini" },
+      { "photo": "https://i.pravatar.cc/160?img=3", "linkedinUrl": "https://www.linkedin.com/in/example-sara-nguyen" },
+      { "photo": "https://i.pravatar.cc/160?img=4", "linkedinUrl": "https://www.linkedin.com/in/example-tommaso-keller" },
+      { "photo": "https://i.pravatar.cc/160?img=5", "linkedinUrl": "https://www.linkedin.com/in/example-nina-costa" },
+      { "photo": "https://i.pravatar.cc/160?img=6", "linkedinUrl": "https://www.linkedin.com/in/example-marco-rossi" }
     ]
   }
 }
