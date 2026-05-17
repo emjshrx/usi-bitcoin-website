@@ -44,7 +44,7 @@
   },
   "join": {
     "title": "Register for the club",
-    "description": "Register for the club (Telegram group).",
+    "description": "Register to the club.",
     "joinButtonLabel": "Register for the club"
   },
   "social": {
@@ -59,7 +59,7 @@
   },
   "joinTeam": {
     "sectionTitle": "Apply as a member",
-    "description": "Want to join the club as a member? Complete the form to apply.",
+    "description": "Want to join the club as an active member? Complete the form to apply.",
     "buttonLabel": "Apply (form)"
   },
   "partners": {
@@ -74,14 +74,14 @@
   },
   "team": {
     "sectionTitle": "Team",
-    "intro": "Committee members (sample data — replace with real names, roles, and photos).",
+    "intro": "Our Team",
     "members": [
-      { "name": "Giulia Fabbri", "role": "President" },
-      { "name": "Luca Martini", "role": "Vice president" },
-      { "name": "Sara Nguyen", "role": "Treasurer" },
-      { "name": "Tommaso Keller", "role": "Communications lead" },
-      { "name": "Nina Costa", "role": "Community lead" },
-      { "name": "Marco Rossi", "role": "Events lead" }
+      { "name": "Coming soon", "role": "President" },
+      { "name": "Coming soon", "role": "Vice president" },
+      { "name": "Coming soon", "role": "Treasurer" },
+      { "name": "Coming soon", "role": "Communications lead" },
+      { "name": "Coming soon", "role": "Community lead" },
+      { "name": "Coming soon", "role": "Events lead" }
     ]
   },
   "seo": {
