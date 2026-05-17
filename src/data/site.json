@@ -44,7 +44,7 @@
   },
   "join": {
     "title": "Iscriviti al club",
-    "description": "Iscriviti al club (gruppo Telegram).",
+    "description": "Iscriviti al club",
     "joinButtonLabel": "Iscriviti al club"
   },
   "social": {
@@ -59,7 +59,7 @@
   },
   "joinTeam": {
     "sectionTitle": "Candidati come membro",
-    "description": "Vuoi far parte del club come membro? Compila il modulo per candidarti.",
+    "description": "Vuoi far parte del club come membro attivo? Compila il modulo per candidarti.",
     "buttonLabel": "Candidati (modulo)"
   },
   "partners": {
@@ -74,14 +74,14 @@
   },
   "team": {
     "sectionTitle": "Team",
-    "intro": "Membri del comitato (dati di esempio — sostituisci con nomi, ruoli e foto reali).",
+    "intro": "Il nostro Team",
     "members": [
-      { "name": "Giulia Fabbri", "role": "Presidente" },
-      { "name": "Luca Martini", "role": "Vicepresidente" },
-      { "name": "Sara Nguyen", "role": "Tesoriere" },
-      { "name": "Tommaso Keller", "role": "Responsabile comunicazione" },
-      { "name": "Nina Costa", "role": "Community lead" },
-      { "name": "Marco Rossi", "role": "Responsabile eventi" }
+      { "name": "Coming soon", "role": "Presidente" },
+      { "name": "Coming soon", "role": "Vicepresidente" },
+      { "name": "Coming soon", "role": "Tesoriere" },
+      { "name": "Coming soon", "role": "Responsabile comunicazione" },
+      { "name": "Coming soon", "role": "Community lead" },
+      { "name": "Coming soon", "role": "Responsabile eventi" }
     ]
   },
   "seo": {
