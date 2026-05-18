@@ -6,7 +6,7 @@
   },
   "cosaFacciamo": {
     "sectionTitle": "Cosa facciamo",
-    "intro": "Eventi e attività passate (dati di esempio — sostituisci con quelli reali).",
+    "intro": "",
     "events": [
       {
         "title": "Bitcoin 101 — open talk",
@@ -43,8 +43,8 @@
     "body": "Creare una community di studenti consapevoli, appassionati di tecnologia e sostenitori di un futuro economico più libero e trasparente."
   },
   "join": {
-    "title": "Unisciti alla community",
-    "description": "Unisciti alla community",
+    "title": "Fai parte della community",
+    "description": "Fai parte della community",
     "joinButtonLabel": "Connettiti"
   },
   "social": {
@@ -59,7 +59,7 @@
   },
   "joinTeam": {
     "sectionTitle": "Candidati come membro",
-    "description": "Vuoi far parte del club come membro attivo? Compila il modulo per candidarti.",
+    "description": "Vuoi essere più coinvolto? Candidati per diventare membro attivo.",
     "buttonLabel": "Candidati (modulo)"
   },
   "partners": {
