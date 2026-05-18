@@ -21,9 +21,9 @@
   },
   "social": {
     "links": [
-      { "url": "https://example.com/social/bitcoin-usi-instagram" },
-      { "url": "https://example.com/social/bitcoin-usi-x" },
-      { "url": "https://example.com/social/bitcoin-usi-linkedin" },
+      { "url": "https://www.instagram.com/bitcoin.usi" },
+      { "url": "https://x.com/bitcoin_usi" },
+      { "url": "https://www.linkedin.com/company/btcusiclub/" },
       { "url": "https://example.com/social/bitcoin-usi-youtube" }
     ]
   },
