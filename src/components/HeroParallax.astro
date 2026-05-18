@@ -10,8 +10,12 @@ interface Props {
 const { site, lang } = Astro.props;
 const asset = withBase;
 const en = lang === "en";
+const { join } = site;
 
 const hero = site.images.hero;
+const showRegisterButton = Boolean(join.joinUrl?.trim());
+const joinBtnClass =
+  "inline-flex min-h-[44px] w-fit items-center justify-center rounded-none bg-orange-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
 ---
 
 <section
@@ -35,9 +39,14 @@ const hero = site.images.hero;
   <div
     data-parallax
     data-speed="0.2"
-    class="pointer-events-none absolute inset-0 z-10 flex w-full items-center justify-center px-6 py-16 md:px-16"
+    class="pointer-events-none absolute inset-x-0 top-0 z-10 flex h-[calc(100svh-var(--site-header-height))] w-full items-center justify-center px-6 md:px-16"
   >
-    <div class="pointer-events-auto flex w-full max-w-6xl flex-col items-center text-center text-white">
+    <div
+      class:list={[
+        "hero-copy pointer-events-auto flex w-full max-w-6xl flex-col items-center text-center text-white",
+        showRegisterButton && "hero-copy--with-cta",
+      ]}
+    >
       <h1 class="text-6xl font-medium uppercase leading-none tracking-tight text-white drop-shadow-xl md:text-8xl lg:text-9xl">
         {site.brand.title}
       </h1>
@@ -48,6 +57,13 @@ const hero = site.images.hero;
             : "Primo Bitcoin University Club in Svizzera · USI · Lugano"
         }
       </p>
+      {
+        showRegisterButton && (
+          <a href={join.joinUrl} class:list={["mt-6", joinBtnClass]} rel="noopener noreferrer">
+            {join.joinButtonLabel}
+          </a>
+        )
+      }
     </div>
   </div>
 
@@ -55,6 +71,25 @@ const hero = site.images.hero;
 </section>
 
 <style>
+  .hero-copy {
+    --hero-below-title: 3.5rem;
+    transform: translateY(calc(var(--hero-below-title) / 2 + 0.75rem));
+  }
+
+  .hero-copy--with-cta {
+    --hero-below-title: 7.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-copy {
+      --hero-below-title: 3.75rem;
+    }
+
+    .hero-copy--with-cta {
+      --hero-below-title: 8.25rem;
+    }
+  }
+
   .hero-layer {
     position: absolute;
     inset: -10% 0;

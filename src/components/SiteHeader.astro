@@ -23,7 +23,7 @@ const menuCloseLabel = lang === "en" ? "Close menu" : "Chiudi menu";
 <div id="site-header-root" class="fixed left-0 right-0 top-0 z-50 w-full">
   <header
     id="site-header"
-    class="border-b border-black/10 bg-white/95 backdrop-blur-md"
+    class="min-h-[var(--site-header-height)] border-b border-black/10 bg-white/95 backdrop-blur-md"
   >
     <div
       class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:gap-6 md:px-8 md:py-3.5"
@@ -394,9 +394,6 @@ const menuCloseLabel = lang === "en" ? "Close menu" : "Chiudi menu";
     }
     syncSiteHeaderHeight();
     window.addEventListener("resize", syncSiteHeaderHeight);
-    requestAnimationFrame(function () {
-      requestAnimationFrame(syncSiteHeaderHeight);
-    });
   })();
 </script>
 
