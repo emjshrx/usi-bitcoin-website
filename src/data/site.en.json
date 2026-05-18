@@ -1,12 +1,12 @@
 {
   "report": {
     "sectionTitle": "Download report",
-    "description": "Download the club’s annual report (PDF).",
+    "description": "Download the club's annual report (PDF).",
     "buttonLabel": "Download report"
   },
   "cosaFacciamo": {
     "sectionTitle": "What we do",
-    "intro": "Past events and activities (sample data — replace with real ones).",
+    "intro": "",
     "events": [
       {
         "title": "Bitcoin 101 — open talk",
@@ -43,8 +43,8 @@
     "body": "Build a community of aware students, passionate about technology and supportive of a freer, more transparent economic future."
   },
   "join": {
-    "title": "Join the community",
-    "description": "Join the community",
+    "title": "Be part of the community",
+    "description": "Be part of the community",
     "joinButtonLabel": "Connect"
   },
   "social": {
@@ -59,7 +59,7 @@
   },
   "joinTeam": {
     "sectionTitle": "Apply as a member",
-    "description": "Want to join the club as an active member? Complete the form to apply.",
+    "description": "Want to get more involved? Apply to become an active member.",
     "buttonLabel": "Apply (form)"
   },
   "partners": {
