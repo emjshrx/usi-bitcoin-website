@@ -360,42 +360,57 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
             <p class="mb-12 max-w-2xl text-sm text-ink/55">{team.intro}</p>
           )}
           <ul class="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-6">
-            {team.members.map((m) => (
-              <li class="flex flex-col items-center rounded-xl border border-ink/10 bg-gray-50 p-5 text-center">
-                {m.photo?.trim() ? (
-                  <span class="mb-3 inline-flex h-16 w-16 shrink-0 isolate overflow-hidden rounded-lg bg-[hsl(24,48%,52%)]">
-                    <img
-                      src={asset(m.photo.trim())}
-                      alt=""
-                      width="120"
-                      height="120"
-                      class="h-full w-full object-cover grayscale contrast-[1.35] brightness-[0.82] mix-blend-luminosity"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </span>
-                ) : (
-                  <div
-                    class="mb-3 flex aspect-square h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-ink/10 text-sm font-bold text-ink/40"
-                    aria-hidden="true"
-                  >
-                    {m.name.split(/\s+/).map((w: string) => w[0]).join("").slice(0, 2).toUpperCase()}
-                  </div>
-                )}
-                <p class="text-sm font-bold leading-tight text-ink">{m.name}</p>
-                {m.role && <p class="mt-1 text-xs text-ink/55">{m.role}</p>}
-                {m.linkedinUrl?.trim() && (
-                  <a
-                    href={m.linkedinUrl.trim()}
-                    class="mt-2 text-xs font-semibold text-orange-500 underline underline-offset-2 hover:text-orange-600"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {ui.linkedinLabel}
-                  </a>
-                )}
-              </li>
-            ))}
+            {team.members.map((m) => {
+              const url = m.linkedinUrl?.trim();
+              const Tag = url ? "a" : "div";
+              const cardClass = `flex h-full flex-col items-center rounded-xl border border-ink/10 bg-gray-50 p-5 text-center${
+                url
+                  ? " transition hover:-translate-y-0.5 hover:border-orange-500/40 hover:bg-white hover:shadow-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                  : ""
+              }`;
+              const tagProps = url
+                ? {
+                    href: url,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    "aria-label": `${m.name} — ${ui.linkedinLabel}`,
+                  }
+                : {};
+              const nameParts = m.name.trim().split(/\s+/);
+              const firstName = nameParts[0];
+              const lastName = nameParts.slice(1).join(" ");
+              return (
+                <li class="h-full">
+                  <Tag class={cardClass} {...tagProps}>
+                    {m.photo?.trim() ? (
+                      <span class="mb-3 inline-flex h-16 w-16 shrink-0 isolate overflow-hidden rounded-lg bg-ink/10">
+                        <img
+                          src={asset(m.photo.trim())}
+                          alt=""
+                          width="120"
+                          height="120"
+                          class="h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </span>
+                    ) : (
+                      <div
+                        class="mb-3 flex aspect-square h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-ink/10 text-sm font-bold text-ink/40"
+                        aria-hidden="true"
+                      >
+                        {m.name.split(/\s+/).map((w: string) => w[0]).join("").slice(0, 2).toUpperCase()}
+                      </div>
+                    )}
+                    <p class="text-sm font-bold leading-tight text-ink">
+                      <span class="block">{firstName}</span>
+                      {lastName && <span class="block">{lastName}</span>}
+                    </p>
+                    {m.role && <p class="mt-auto pt-2 text-xs text-ink/55">{m.role}</p>}
+                  </Tag>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>

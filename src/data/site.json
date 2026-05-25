@@ -77,8 +77,11 @@
       { "name": "Matteo Nardin", "role": "Vicepresidente" },
       { "name": "Georgy Karavaev", "role": "Tesoriere" },
       { "name": "Vittorio Ricatto", "role": "Responsabile comunicazione" },
+      { "name": "Anna Firsenko", "role": "Membro" },
       { "name": "Valentina Benedini", "role": "Community lead" },
-      { "name": "Alessandro Ceretti", "role": "Responsabile eventi" }
+      { "name": "Alessandro Ceretti", "role": "Responsabile eventi" },
+      { "name": "Emil Joshy", "role": "Responsabile education" },
+      { "name": "Edoardo Spagnoli", "role": "Membro" }
     ]
   },
   "seo": {

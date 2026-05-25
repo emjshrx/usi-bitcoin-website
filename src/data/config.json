@@ -60,12 +60,15 @@
   },
   "team": {
     "members": [
-      { "photo": "", "linkedinUrl": "https://www.linkedin.com/in/lucaagliati/" },
-      { "photo": "", "linkedinUrl": "https://www.linkedin.com/in/matteo-nardin04/" },
-      { "photo": "", "linkedinUrl": "https://www.linkedin.com/in/georgykaravaev/" },
-      { "photo": "", "linkedinUrl": "https://www.linkedin.com/in/vittorio-ricatto/" },
-      { "photo": "", "linkedinUrl": "https://www.linkedin.com/in/valentinabenedini/" },
-      { "photo": "", "linkedinUrl": "https://www.linkedin.com/in/alessandro-ceretti-37a122383/" }
+      { "photo": "images/team/luca.png", "linkedinUrl": "https://www.linkedin.com/in/lucaagliati/" },
+      { "photo": "images/team/matteo.jpeg", "linkedinUrl": "https://www.linkedin.com/in/matteo-nardin04/" },
+      { "photo": "images/team/geka.jpeg", "linkedinUrl": "https://www.linkedin.com/in/georgykaravaev/" },
+      { "photo": "images/team/vittorio.jpeg", "linkedinUrl": "https://www.linkedin.com/in/vittorio-ricatto/" },
+      { "photo": "", "linkedinUrl": "" },
+      { "photo": "images/team/valentina.jpg", "linkedinUrl": "https://www.linkedin.com/in/valentinabenedini/" },
+      { "photo": "images/team/ale.jpg", "linkedinUrl": "https://www.linkedin.com/in/alessandro-ceretti-37a122383/" },
+      { "photo": "images/team/emil.png", "linkedinUrl": "https://www.linkedin.com/in/emil-joshy-1ab610144/" },
+      { "photo": "", "linkedinUrl": "" }
     ]
   }
 }
