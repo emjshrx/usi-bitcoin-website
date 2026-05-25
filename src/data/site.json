@@ -9,20 +9,20 @@
     "intro": "",
     "events": [
       {
-        "title": "Events",
+        "title": "Eventi",
         "description": "Talks, workshop e panel aperti a tutti gli studenti USI."
       },
       {
-        "title": "Articles and newsletter",
+        "title": "Articoli e newsletter",
         "description": "Approfondimenti scritti dal team su Bitcoin ed economia."
       },
       {
-        "title": "Interviews on campus",
-        "description": "Conversazioni con studenti, professori e ospiti del campus."
+        "title": "Interviste sul campus",
+        "description": "Conversazioni con studenti, professori e ospiti sul campus."
       },
       {
-        "title": "Movie night + debate",
-        "description": "Proiezioni e dibattito aperto su temi complessi."
+        "title": "Serata cinema + dibattito",
+        "description": "Proiezioni e dibattito aperto."
       }
     ]
   },
