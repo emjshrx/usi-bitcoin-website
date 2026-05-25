@@ -21,7 +21,6 @@ const {
   cosaFacciamo,
   chiSiamo,
   missione,
-  visione,
   join,
   social,
   joinTeam,
@@ -192,15 +191,15 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
   <!-- ═══ LIGHT SECTION ═══════════════════════════════════════════════════ -->
   <div class="bg-white">
 
-    <!-- CHI SIAMO + MISSIONE + VISIONE — merged ──────────────────────── -->
+    <!-- CHI SIAMO ─────────────────────────────────────────────────────── -->
     <section id="chi-siamo" class="scroll-mt-24 px-4 py-20 md:px-8 md:scroll-mt-28">
       <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-start md:gap-12 lg:gap-14">
         <div class="min-w-0">
           <h2 class="mb-8 text-3xl font-black tracking-tight text-ink md:text-4xl">
             {chiSiamo.title}
           </h2>
-          <p class="text-lg leading-relaxed text-ink/70">
-            {chiSiamo.body} {missione.body} {visione.body}
+          <p class="whitespace-pre-line text-lg leading-relaxed text-ink/70">
+            {chiSiamo.body}
           </p>
         </div>
         <div class="min-w-0 flex justify-center md:justify-end">
@@ -301,8 +300,8 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
                     {ev.title}
                   </span>
                   {ev.date && <p class="mb-2 text-xs text-white/40">{ev.date}</p>}
-                  {ev.description && (
-                    <p class="flex-1 text-[0.9rem] leading-relaxed text-white/65">{ev.description}</p>
+                  {ev.details && (
+                    <p class="flex-1 text-[0.9rem] leading-relaxed text-white/65">{ev.details}</p>
                   )}
                   <span class="mt-5 text-sm font-bold text-white">
                     {en ? "Learn More →" : "Scopri →"}

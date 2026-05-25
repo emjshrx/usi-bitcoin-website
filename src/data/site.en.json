@@ -11,33 +11,33 @@
     "events": [
       {
         "title": "Events",
-        "description": "Talks, workshops and panels open to all USI students."
+        "description": "Talks, workshops and panels open to all USI students.",
+        "details": "Talks, workshops and panels open to all USI students."
       },
       {
         "title": "Articles and newsletter",
-        "description": "In-depth content written by the team on Bitcoin and economics."
+        "description": "In-depth content written by the team on Bitcoin and economics.",
+        "details": "In-depth content written by the team on Bitcoin and economics."
       },
       {
         "title": "Interviews on campus",
-        "description": "Conversations with students, professors and guests on campus."
+        "description": "Conversations with students, professors and guests on campus.",
+        "details": "Conversations with students, professors and guests on campus."
       },
       {
         "title": "Movie night + debate",
-        "description": "Screenings and open debate."
+        "description": "Screenings and open debate.",
+        "details": "Screenings and open debate."
       }
     ]
   },
   "chiSiamo": {
     "title": "Who we are",
-    "body": "We are a collective of students united by a passion for Bitcoin and economics. Our goal is to spread knowledge, promote critical thinking, and build a community focused on a freer economic future. Association recognised by Università della Svizzera italiana (USI)."
+    "body": "We are a collective of students united by a passion for Bitcoin and economics. Our goal is to spread knowledge, promote critical thinking, and build a community focused on a freer economic future.\n\nAssociation recognised by Università della Svizzera italiana (USI)."
   },
   "missione": {
     "title": "Mission",
-    "body": ""
-  },
-  "visione": {
-    "title": "Vision",
-    "body": ""
+    "body": "Spread knowledge about Bitcoin and decentralized technologies, promoting critical thinking and innovation among university students."
   },
   "join": {
     "title": "Join the community",

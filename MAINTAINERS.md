@@ -27,7 +27,7 @@ The site is generated from this repository. After every change on the **`main`**
 | `config.json` | `team.members[].photo` | Photo per member; **same order** as `members` in the language files (`name`, `role`, `bio`) |
 | `config.json` | `join` | `joinUrl` (Telegram etc.), `email`, `qrImage` (path under `public/`) |
 | `config.json` | `images` | `logo`, `usiBuilding`, `footerStrip` (paths under `public/`; empty `footerStrip` to hide) |
-| `site.json` (+ EN) | `chiSiamo` / `missione` / `visione` | Title and body for the three tabs |
+| `site.json` (+ EN) | `chiSiamo` / `missione` | Title and body for the two sections |
 | `site.json` (+ EN) | `join` | `title`, `bullets`, `tagline`, `joinButtonLabel` |
 | `site.json` (+ EN) | `seo.description` | Search engine description |
 

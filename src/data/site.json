@@ -11,33 +11,33 @@
     "events": [
       {
         "title": "Eventi",
-        "description": "Talks, workshop e panel aperti a tutti gli studenti USI."
+        "description": "Talks, workshop e panel aperti a tutti gli studenti USI.",
+        "details": "Talks, workshop e panel aperti a tutti gli studenti USI."
       },
       {
         "title": "Articoli e newsletter",
-        "description": "Approfondimenti scritti dal team su Bitcoin ed economia."
+        "description": "Approfondimenti scritti dal team su Bitcoin ed economia.",
+        "details": "Approfondimenti scritti dal team su Bitcoin ed economia."
       },
       {
         "title": "Interviste sul campus",
-        "description": "Conversazioni con studenti, professori e ospiti sul campus."
+        "description": "Conversazioni con studenti, professori e ospiti sul campus.",
+        "details": "Conversazioni con studenti, professori e ospiti sul campus."
       },
       {
         "title": "Serata cinema + dibattito",
-        "description": "Proiezioni e dibattito aperto."
+        "description": "Proiezioni e dibattito aperto.",
+        "details": "Proiezioni e dibattito aperto."
       }
     ]
   },
   "chiSiamo": {
     "title": "Chi siamo",
-    "body": "Siamo un collettivo di studenti uniti dalla passione per Bitcoin e l'economia. Il nostro obiettivo è diffondere conoscenza, promuovere pensiero critico e costruire una community orientata a un futuro economico più libero. Associazione riconosciuta dall’Università della Svizzera Italiana (USI)."
+    "body": "Siamo un collettivo di studenti uniti dalla passione per Bitcoin e l'economia. Il nostro obiettivo è diffondere conoscenza, promuovere pensiero critico e costruire una community orientata a un futuro economico più libero.\n\nAssociazione riconosciuta dall’Università della Svizzera Italiana (USI)."
   },
   "missione": {
     "title": "Missione",
-    "body": ""
-  },
-  "visione": {
-    "title": "Visione",
-    "body": ""
+    "body": "Diffondere la conoscenza su Bitcoin e sulle tecnologie decentralizzate, promuovendo pensiero critico e innovazione tra gli studenti universitari."
   },
   "join": {
     "title": "Entra nella community",
