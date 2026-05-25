@@ -289,7 +289,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
             <h2 class="mb-12 text-4xl font-black uppercase leading-tight tracking-tight text-white md:text-6xl">
               {en
                 ? <><span>WAYS </span><span class="bg-white px-2 text-black">[WE DO]</span><span> COMMUNITY</span></>
-                : <><span>MODI </span><span class="bg-white px-2 text-black">[CHE USIAMO]</span><span> COMUNITÀ</span></>}
+                : <><span>COME </span><span class="bg-white px-2 text-black">[FACCIAMO]</span><span> COMUNITÀ</span></>}
             </h2>
             <div class="grid gap-5 sm:grid-cols-2">
               {cosaFacciamo.events.map((ev) => (
@@ -311,6 +311,44 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
         </section>
       )}
     </div>
+
+    <!-- REPORT ───────────────────────────────────────────────────────── -->
+    {showReport && (
+      <section
+        id="report"
+        class="scroll-mt-24 bg-gray-50 px-4 py-20 text-ink md:px-8 md:scroll-mt-28"
+      >
+        <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center md:gap-12 lg:gap-14">
+          {report.coverImage?.trim() && (
+            <div class="min-w-0 flex justify-center md:justify-start">
+              <img
+                src={asset(report.coverImage.trim())}
+                alt={ui.reportCoverAlt}
+                class="aspect-square w-full max-w-xs rounded-xl object-cover shadow-card md:max-w-sm"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )}
+          <div class="min-w-0 flex flex-col items-center text-center md:items-start md:text-left">
+            <h2 class="mb-8 text-3xl font-black tracking-tight text-ink md:text-4xl">
+              {report.sectionTitle}
+            </h2>
+            {report.description && (
+              <p class="mb-10 max-w-2xl text-lg leading-relaxed text-ink/70">{report.description}</p>
+            )}
+            <a
+              href={report.url}
+              class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none bg-orange-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {report.buttonLabel}
+            </a>
+          </div>
+        </div>
+      </section>
+    )}
 
     <!-- TEAM ─────────────────────────────────────────────────────────── -->
     {showTeam && (
