@@ -1,6 +1,3 @@
-Hai ragione, mi scuso. Ecco la traduzione pura senza modifiche:
-
-```json
 {
   "report": {
     "sectionTitle": "Download the report",
@@ -101,4 +98,3 @@ Hai ragione, mi scuso. Ecco la traduzione pura senza modifiche:
     "emptyEventsFile": "src/data/site.en.json"
   }
 }
-```
