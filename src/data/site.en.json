@@ -1,39 +1,38 @@
+Hai ragione, mi scuso. Ecco la traduzione pura senza modifiche:
+
+```json
 {
   "report": {
-    "sectionTitle": "Download report",
-    "description": "Download the club's annual report (PDF). A comprehensive overview of our activities, events, and collaborations from the academic year, including the milestones we've reached, upcoming initiatives, and a snapshot of the work done by our community of students passionate about Bitcoin and decentralized technologies.",
+    "sectionTitle": "Download the report",
+    "description": "Download the club's annual report. A complete overview of our activities, events and collaborations of the academic year, including milestones reached and future initiatives.",
     "descriptionShort": "Download the club's annual report (PDF).",
-    "buttonLabel": "Download report"
+    "buttonLabel": "Download the report"
   },
   "cosaFacciamo": {
-    "sectionTitle": "What we do (Coming Soon)",
+    "sectionTitle": "What we do",
     "intro": "",
     "events": [
       {
-        "title": "Bitcoin 101 — open talk",
-        "date": "15 November 2025",
-        "description": "Introduction to Bitcoin, mining, and wallets: core concepts and Q&A."
+        "title": "Events",
+        "description": "Talks, workshops and panels open to all USI students."
       },
       {
-        "title": "Workshop: Lightning Network",
-        "date": "28 January 2026",
-        "description": "Hands-on second-layer payments demo and discussion of scalability trade-offs."
+        "title": "Articles and newsletter",
+        "description": "In-depth content written by the team on Bitcoin and economics."
       },
       {
-        "title": "Panel: regulation and privacy",
-        "date": "7 February 2026",
-        "description": "Debate with guests on MiCA, self-custody, and operator responsibilities."
+        "title": "Interviews on campus",
+        "description": "Conversations with students, professors and guests on campus."
       },
       {
-        "title": "Film night + discussion",
-        "date": "20 February 2026",
-        "description": "Screening and conversation on mainstream narratives and financial education."
+        "title": "Movie night + debate",
+        "description": "Screenings and open debate."
       }
     ]
   },
   "chiSiamo": {
     "title": "Who we are",
-    "body": "We are a collective of enthusiastic students with a strong passion for economics, Bitcoin, and emerging technologies."
+    "body": "We are a collective of enthusiastic students with a strong passion for economics, Bitcoin and emerging technologies."
   },
   "missione": {
     "title": "Mission",
@@ -44,9 +43,9 @@
     "body": "Build a community of aware students, passionate about technology and supportive of a freer, more transparent economic future."
   },
   "join": {
-    "title": "Be part of the community",
-    "description": "Be part of the community",
-    "joinButtonLabel": "Join Us"
+    "title": "Join the community",
+    "description": "Join the community",
+    "joinButtonLabel": "Join"
   },
   "social": {
     "sectionTitle": "Social",
@@ -60,7 +59,7 @@
   },
   "joinTeam": {
     "sectionTitle": "Apply as a member",
-    "description": "Want to get more involved? Apply to become an active member.",
+    "description": "Want to join the team? Apply to become an active member.",
     "buttonLabel": "Apply (form)"
   },
   "partners": {
@@ -102,3 +101,4 @@
     "emptyEventsFile": "src/data/site.en.json"
   }
 }
+```
