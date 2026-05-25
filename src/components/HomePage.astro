@@ -238,13 +238,9 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
                   )}
                   <div class="flex flex-1 flex-col p-5">
                     <p class="font-bold text-ink">{ev.title}</p>
-                    {ev.date && <p class="mt-1 text-xs text-ink/45">{ev.date}</p>}
                     {ev.description && (
                       <p class="mt-2 flex-1 text-[0.85rem] leading-relaxed text-ink/70">{ev.description}</p>
                     )}
-                    <span class="mt-4 text-sm font-bold text-orange-500">
-                      {en ? "Learn more →" : "Scopri di più →"}
-                    </span>
                   </div>
                 </article>
               ))}
