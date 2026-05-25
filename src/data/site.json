@@ -9,24 +9,20 @@
     "intro": "",
     "events": [
       {
-        "title": "Bitcoin 101 — open talk",
-        "date": "15 novembre 2025",
-        "description": "Introduzione a Bitcoin, mining e wallet: concetti base e domande dal pubblico."
+        "title": "Events",
+        "description": "Talks, workshop e panel aperti a tutti gli studenti USI."
       },
       {
-        "title": "Workshop: Lightning Network",
-        "date": "28 gennaio 2026",
-        "description": "Demo pratica di pagamenti su second layer e discussione su trade-off di scalabilità."
+        "title": "Articles and newsletter",
+        "description": "Approfondimenti scritti dal team su Bitcoin ed economia."
       },
       {
-        "title": "Panel: regolazione e privacy",
-        "date": "7 febbraio 2026",
-        "description": "Dibattito con ospiti su MiCA, auto-custodia e responsabilità degli operatori."
+        "title": "Interviews on campus",
+        "description": "Conversazioni con studenti, professori e ospiti del campus."
       },
       {
-        "title": "Serata film + dibattito",
-        "date": "20 febbraio 2026",
-        "description": "Proiezione e discussione su narrativa mainstream e educazione finanziaria."
+        "title": "Movie night + debate",
+        "description": "Proiezioni e dibattito aperto su temi complessi."
       }
     ]
   },
