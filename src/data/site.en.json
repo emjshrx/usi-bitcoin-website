@@ -75,13 +75,13 @@
     "members": [
       { "name": "Luca Agliati", "role": "President" },
       { "name": "Matteo Nardin", "role": "Vice president" },
-      { "name": "Georgy Karavaev", "role": "Treasurer" },
-      { "name": "Vittorio Ricatto", "role": "Communications lead" },
-      { "name": "Anna Firsenko", "role": "Member" },
-      { "name": "Valentina Benedini", "role": "Community lead" },
-      { "name": "Alessandro Ceretti", "role": "Events lead" },
-      { "name": "Emil Joshy", "role": "Education lead" },
-      { "name": "Edoardo Spagnoli", "role": "Member" }
+      { "name": "Georgy Karavaev", "role": "" },
+      { "name": "Vittorio Ricatto", "role": "" },
+      { "name": "Anna Firsenko", "role": "" },
+      { "name": "Valentina Benedini", "role": "" },
+      { "name": "Alessandro Ceretti", "role": "" },
+      { "name": "Emil Joshy", "role": "" },
+      { "name": "Edoardo Spagnoli", "role": "" }
     ]
   },
   "seo": {
