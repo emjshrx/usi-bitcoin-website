@@ -41,20 +41,20 @@
   "partners": {
     "items": [
       {
-        "url": "https://example.com/partner/fizzy",
-        "logo": "images/partners/fizzy.svg"
+        "url": "https://www.fizzy.ch/",
+        "logo": "images/partners/fizzy.png"
       },
       {
-        "url": "https://planb.network",
-        "logo": "images/partners/plan-b-network.svg"
+        "url": "https://planb.network/",
+        "logo": "images/partners/planbnetwork.png"
       },
       {
-        "url": "https://example.com/partner/aqua",
-        "logo": "images/partners/aqua.svg"
+        "url": "https://aqua.net/",
+        "logo": "images/partners/aqua.png"
       },
       {
-        "url": "https://planb.foundation",
-        "logo": "images/partners/plan-b-foundation.svg"
+        "url": "https://planb.lugano.ch/",
+        "logo": "images/partners/PlanB.png"
       }
     ]
   },

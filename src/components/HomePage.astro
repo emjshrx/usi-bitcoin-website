@@ -72,8 +72,14 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
           <div class="partner-carousel">
             <div class="partner-carousel__viewport" role="region" aria-label={partners.sectionTitle}>
               <ul class="partner-carousel__track px-4 md:px-8" aria-label={partners.sectionTitle}>
-                {Array.from({ length: partnerReps }).map((_, repIdx) =>
-                  partners.items.map((p) => (
+                {Array.from({ length: partnerReps }).map((_, repIdx) => (
+                  <>
+                    <li class="partner-carousel__item partner-carousel__label" aria-hidden={repIdx > 0 ? "true" : undefined}>
+                      <span class="inline-block rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.25em] text-black">
+                        {partners.sectionTitle}
+                      </span>
+                    </li>
+                    {partners.items.map((p) => (
                     <li class="partner-carousel__item" aria-hidden={repIdx > 0 ? "true" : undefined}>
                       {p.logo?.trim() ? (
                         p.url?.trim() ? (
@@ -87,7 +93,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
                             <img
                               src={asset(p.logo.trim())}
                               alt={repIdx > 0 ? "" : p.name}
-                              class="h-9 w-auto max-w-full object-contain brightness-0 invert opacity-80 transition hover:opacity-100"
+                              class="h-9 w-32 object-contain brightness-0 invert opacity-80 transition hover:opacity-100"
                               loading="lazy"
                             />
                           </a>
@@ -95,7 +101,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
                           <img
                             src={asset(p.logo.trim())}
                             alt={repIdx > 0 ? "" : p.name}
-                            class="h-9 w-auto max-w-full object-contain brightness-0 invert opacity-80"
+                            class="h-9 w-32 object-contain brightness-0 invert opacity-80"
                             loading="lazy"
                           />
                         )
@@ -118,8 +124,9 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
                         )
                       )}
                     </li>
-                  ))
-                )}
+                    ))}
+                  </>
+                ))}
               </ul>
             </div>
           </div>
