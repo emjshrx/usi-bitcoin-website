@@ -2,6 +2,7 @@
   "report": {
     "sectionTitle": "Scarica il report",
     "description": "Scarica il rapporto annuale del club. Una panoramica completa delle nostre attività, eventi e collaborazioni dell'anno accademico, inclusi i traguardi raggiunti e le iniziative future.",
+    "descriptionShort": "Scarica il rapporto annuale del club (PDF).",
     "buttonLabel": "Scarica il report"
   },
   "cosaFacciamo": {
@@ -72,12 +73,12 @@
     "sectionTitle": "Team",
     "intro": "Il nostro Team",
     "members": [
-      { "name": "Coming soon", "role": "Presidente" },
-      { "name": "Coming soon", "role": "Vicepresidente" },
-      { "name": "Coming soon", "role": "Tesoriere" },
-      { "name": "Coming soon", "role": "Responsabile comunicazione" },
-      { "name": "Coming soon", "role": "Community lead" },
-      { "name": "Coming soon", "role": "Responsabile eventi" }
+      { "name": "Luca Agliati", "role": "Presidente" },
+      { "name": "Matteo Nardin", "role": "Vicepresidente" },
+      { "name": "Georgy Karavaev", "role": "Tesoriere" },
+      { "name": "Vittorio Ricatto", "role": "Responsabile comunicazione" },
+      { "name": "Valentina Benedini", "role": "Community lead" },
+      { "name": "Alessandro Ceretti", "role": "Responsabile eventi" }
     ]
   },
   "seo": {

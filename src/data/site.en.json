@@ -2,6 +2,7 @@
   "report": {
     "sectionTitle": "Download report",
     "description": "Download the club's annual report (PDF). A comprehensive overview of our activities, events, and collaborations from the academic year, including the milestones we've reached, upcoming initiatives, and a snapshot of the work done by our community of students passionate about Bitcoin and decentralized technologies.",
+    "descriptionShort": "Download the club's annual report (PDF).",
     "buttonLabel": "Download report"
   },
   "cosaFacciamo": {
@@ -76,12 +77,12 @@
     "sectionTitle": "Team",
     "intro": "Our Team",
     "members": [
-      { "name": "Coming soon", "role": "President" },
-      { "name": "Coming soon", "role": "Vice president" },
-      { "name": "Coming soon", "role": "Treasurer" },
-      { "name": "Coming soon", "role": "Communications lead" },
-      { "name": "Coming soon", "role": "Community lead" },
-      { "name": "Coming soon", "role": "Events lead" }
+      { "name": "Luca Agliati", "role": "President" },
+      { "name": "Matteo Nardin", "role": "Vice president" },
+      { "name": "Georgy Karavaev", "role": "Treasurer" },
+      { "name": "Vittorio Ricatto", "role": "Communications lead" },
+      { "name": "Valentina Benedini", "role": "Community lead" },
+      { "name": "Alessandro Ceretti", "role": "Events lead" }
     ]
   },
   "seo": {
