@@ -6,13 +6,30 @@ interface Props {
   title: string;
   description: string;
   lang?: string;
+  image?: string;
+  imageAlt?: string;
 }
 
-const { title, description, lang = "it" } = Astro.props;
+const {
+  title,
+  description,
+  lang = "it",
+  image = "images/og-image.jpg",
+  imageAlt = title,
+} = Astro.props;
+
 const canonical =
   Astro.site != null
     ? new URL(Astro.url.pathname, Astro.site).href
     : Astro.url.href;
+
+const imagePath = withBase(image);
+const ogImage =
+  Astro.site != null ? new URL(imagePath, Astro.site).href : imagePath;
+
+const siteName = "Bitcoin USI Club";
+const ogLocale = lang === "en" ? "en_US" : "it_IT";
+const ogLocaleAlt = lang === "en" ? "it_IT" : "en_US";
 ---
 
 <!doctype html>
@@ -25,6 +42,26 @@ const canonical =
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={String(canonical)} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <meta name="twitter:site" content="@bitcoin_usi" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
