@@ -73,8 +73,8 @@
     "sectionTitle": "Team",
     "intro": "Our Team",
     "members": [
-      { "name": "Luca Agliati", "role": "President" },
-      { "name": "Matteo Nardin", "role": "Vice president" },
+      { "name": "Luca Agliati", "role": "" },
+      { "name": "Matteo Nardin", "role": "" },
       { "name": "Georgy Karavaev", "role": "" },
       { "name": "Vittorio Ricatto", "role": "" },
       { "name": "Anna Firsenko", "role": "" },
