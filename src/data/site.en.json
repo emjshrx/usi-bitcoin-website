@@ -73,15 +73,15 @@
     "sectionTitle": "Team",
     "intro": "Our Team",
     "members": [
-      { "name": "Luca Agliati", "role": "" },
-      { "name": "Matteo Nardin", "role": "" },
-      { "name": "Georgy Karavaev", "role": "" },
-      { "name": "Vittorio Ricatto", "role": "" },
-      { "name": "Anna Firsenko", "role": "" },
-      { "name": "Valentina Benedini", "role": "" },
-      { "name": "Alessandro Ceretti", "role": "" },
-      { "name": "Emil Joshy", "role": "" },
-      { "name": "Edoardo Spagnoli", "role": "" }
+      { "name": "Luca Agliati", "role": "President" },
+      { "name": "Matteo Nardin", "role": "Vice President" },
+      { "name": "Georgy Karavaev", "role": "Treasurer & BD" },
+      { "name": "Vittorio Ricatto", "role": "Advisor" },
+      { "name": "Anna Firsenko", "role": "Marketing Team" },
+      { "name": "Valentina Benedini", "role": "Marketing Team" },
+      { "name": "Alessandro Ceretti", "role": "Marketing Team" },
+      { "name": "Emil Joshy", "role": "Education & Research" },
+      { "name": "Edoardo Spagnoli", "role": "Education & Research" }
     ]
   },
   "seo": {
