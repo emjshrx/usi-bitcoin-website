@@ -1,3 +1,4 @@
+```json
 {
   "report": {
     "sectionTitle": "Scarica il report",
@@ -33,7 +34,7 @@
   },
   "chiSiamo": {
     "title": "Chi siamo",
-    "body": "Bitcoin USI Club è un gruppo di studenti uniti dalla passione per Bitcoin e l'economia. Il nostro obiettivo è diffondere conoscenza, promuovere pensiero critico e costruire una community orientata a un futuro economico più libero.\n\nAssociazione riconosciuta dall’Università della Svizzera Italiana (USI), Lugano."
+    "body": "Bitcoin USI Club è un gruppo di studenti uniti dalla passione per Bitcoin e l'economia. Il nostro obiettivo è diffondere conoscenza, promuovere pensiero critico e costruire una community orientata a un futuro economico più libero.\n\nAssociazione riconosciuta dall'Università della Svizzera Italiana (USI), Lugano."
   },
   "missione": {
     "title": "Missione",
@@ -73,15 +74,15 @@
     "sectionTitle": "Team",
     "intro": "Il nostro Team",
     "members": [
-      { "name": "Luca Agliati", "role": "" },
-      { "name": "Matteo Nardin", "role": "" },
-      { "name": "Georgy Karavaev", "role": "" },
-      { "name": "Vittorio Ricatto", "role": "" },
-      { "name": "Anna Firsenko", "role": "" },
-      { "name": "Valentina Benedini", "role": "" },
-      { "name": "Alessandro Ceretti", "role": "" },
-      { "name": "Emil Joshy", "role": "" },
-      { "name": "Edoardo Spagnoli", "role": "" }
+      { "name": "Luca Agliati", "role": "Presidente" },
+      { "name": "Matteo Nardin", "role": "Vicepresidente" },
+      { "name": "Georgy Karavaev", "role": "Tesoriere & BD" },
+      { "name": "Vittorio Ricatto", "role": "Advisor" },
+      { "name": "Anna Firsenko", "role": "Marketing Team" },
+      { "name": "Valentina Benedini", "role": "Marketing Team" },
+      { "name": "Alessandro Ceretti", "role": "Marketing Team" },
+      { "name": "Emil Joshy", "role": "Educazione & Ricerca" },
+      { "name": "Edoardo Spagnoli", "role": "Educazione & Ricerca" }
     ]
   },
   "seo": {
@@ -101,3 +102,6 @@
     "emptyEventsFile": "src/data/site.json"
   }
 }
+```
+
+Fatto. Altre modifiche?
