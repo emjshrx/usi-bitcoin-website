@@ -36,17 +36,17 @@
   },
   "cosaFacciamo": {
     "events": [
-      { "image": "images/placeholders/event-1.svg" },
+      { "image": "images/placeholders/events.jpeg" },
       { "image": "images/placeholders/event-2.svg" },
-      { "image": "images/placeholders/event-3.svg" },
+      { "image": "images/placeholders/interview2.jpeg" },
       { "image": "images/placeholders/event-4.svg" }
     ]
   },
   "comeFacciamoComunita": {
     "cards": [
-      { "image": "images/placeholders/event-1.svg", "url": "https://example.com/community/events" },
+      { "image": "images/placeholders/events.jpeg", "url": "https://example.com/community/events" },
       { "image": "images/placeholders/event-2.svg", "url": "https://example.com/community/articles" },
-      { "image": "images/placeholders/event-3.svg", "url": "https://example.com/community/interviews" },
+      { "image": "images/placeholders/interview2.jpeg", "url": "https://example.com/community/interviews" },
       { "image": "images/placeholders/event-4.svg", "url": "https://example.com/community/movie-night" }
     ]
   },
