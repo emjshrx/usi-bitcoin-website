@@ -21,7 +21,6 @@ const {
   cosaFacciamo,
   comeFacciamoComunita,
   chiSiamo,
-  missione,
   join,
   social,
   joinTeam,
@@ -52,7 +51,7 @@ const filteredSocialLinks = social.links.filter(
 );
 
 const joinTeamBtnClass =
-  "inline-flex min-h-[44px] w-fit items-center justify-center rounded-none bg-orange-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
+  "inline-flex min-h-[44px] w-fit items-center justify-center rounded-xl bg-orange-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
 
 const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzycgcxzy.png");
 ---
@@ -277,18 +276,9 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
       </div>
       <div class="pointer-events-none absolute inset-0 z-[1] bg-black/72" aria-hidden="true" />
 
-      <!-- MISSION QUOTE ──────────────────────────────────────────────────── -->
-      <section class="relative z-[2] px-6 py-24 md:px-16">
-        <div class="mx-auto max-w-4xl">
-          <blockquote class="text-2xl font-bold italic leading-snug text-white/85 md:text-4xl">
-            &ldquo;{missione.body}&rdquo;
-          </blockquote>
-        </div>
-      </section>
-
       <!-- WAYS WE DO COMMUNITY ────────────────────────────────────────────── -->
       {showComeFacciamoComunita && (
-        <section class="relative z-[2] px-4 pb-16 md:px-8 md:pb-24">
+        <section class="relative z-[2] px-4 py-16 md:px-8 md:py-24">
           <div class="mx-auto max-w-6xl">
             <h2 class="mb-12 text-4xl font-black uppercase leading-tight tracking-tight text-white md:text-6xl">
               {en
@@ -385,7 +375,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
             )}
             <a
               href={report.url}
-              class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none bg-orange-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+              class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-xl bg-orange-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -492,7 +482,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
             <div class="order-2 flex justify-center md:justify-start">
               <a
                 href={join.joinUrl!}
-                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 rel="noopener noreferrer"
               >
                 {join.joinButtonLabel}
@@ -511,7 +501,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
             <div class="order-6 flex justify-center md:justify-end">
               <a
                 href={report.url}
-                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -536,7 +526,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
             <div class="order-2 flex justify-center md:justify-start">
               <a
                 href={join.joinUrl!}
-                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 rel="noopener noreferrer"
               >
                 {join.joinButtonLabel}
@@ -545,7 +535,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
             <div class="order-4 flex justify-center md:justify-end">
               <a
                 href={report.url}
-                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -572,7 +562,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
                 <div class="order-2 flex justify-center md:justify-start">
                   <a
                     href={join.joinUrl!}
-                    class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     rel="noopener noreferrer"
                   >
                     {join.joinButtonLabel}
@@ -617,7 +607,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
                 <div class="order-4 flex justify-center md:justify-end">
                   <a
                     href={report.url}
-                    class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -634,7 +624,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
                 )}
                 <a
                   href={join.joinUrl!}
-                  class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   rel="noopener noreferrer"
                 >
                   {join.joinButtonLabel}
@@ -649,7 +639,7 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
                 )}
                 <a
                   href={report.url}
-                  class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-none border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  class="inline-flex min-h-[44px] w-fit items-center justify-center rounded-xl border-2 border-white px-6 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
