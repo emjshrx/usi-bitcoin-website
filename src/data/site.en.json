@@ -11,22 +11,42 @@
     "events": [
       {
         "title": "Events",
-        "description": "Talks, workshops and panels open to all USI students.",
+        "description": "Talks, workshops and panels open to all USI students."
+      },
+      {
+        "title": "Articles and newsletter",
+        "description": "In-depth content written by the team on Bitcoin and economics."
+      },
+      {
+        "title": "Interviews on campus",
+        "description": "Conversations with students, professors and guests on campus."
+      },
+      {
+        "title": "Movie night & debate",
+        "description": "Screenings and open debate."
+      }
+    ]
+  },
+  "comeFacciamoComunita": {
+    "cards": [
+      {
+        "title": "Events",
+        "date": "",
         "details": "Talks, workshops and panels open to all USI students."
       },
       {
         "title": "Articles and newsletter",
-        "description": "In-depth content written by the team on Bitcoin and economics.",
+        "date": "",
         "details": "In-depth content written by the team on Bitcoin and economics."
       },
       {
         "title": "Interviews on campus",
-        "description": "Conversations with students, professors and guests on campus.",
+        "date": "",
         "details": "Conversations with students, professors and guests on campus."
       },
       {
         "title": "Movie night & debate",
-        "description": "Screenings and open debate.",
+        "date": "",
         "details": "Screenings and open debate."
       }
     ]

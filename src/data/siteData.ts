@@ -22,6 +22,11 @@ export function mergeSite(locale: LocaleSite) {
     config.cosaFacciamo.events,
     "cosaFacciamo.events",
   );
+  assertSameLength(
+    locale.comeFacciamoComunita.cards,
+    config.comeFacciamoComunita.cards,
+    "comeFacciamoComunita.cards",
+  );
 
   return {
     ...locale,
@@ -51,6 +56,14 @@ export function mergeSite(locale: LocaleSite) {
       events: locale.cosaFacciamo.events.map((ev, i) => ({
         ...ev,
         image: config.cosaFacciamo.events[i].image,
+      })),
+    },
+    comeFacciamoComunita: {
+      ...locale.comeFacciamoComunita,
+      cards: locale.comeFacciamoComunita.cards.map((card, i) => ({
+        ...card,
+        image: config.comeFacciamoComunita.cards[i].image,
+        url: config.comeFacciamoComunita.cards[i].url,
       })),
     },
     partners: {

@@ -19,7 +19,11 @@ The site is generated from this repository. After every change on the **`main`**
 | `config.json` | `report.url` | PDF link; if empty the report section is hidden |
 | `config.json` | `nextEvent.lumaUrl` | Luma link (title/date/copy stay in `site.json` / `site.en.json`) |
 | `site.json` (+ EN) | `nextEvent` | `title`, `datetime`, `description`, Luma button label |
-| `site.json` (+ EN) | `cosaFacciamo` | Past events: `events` with `title`, `date`, `description` |
+| `site.json` (+ EN) | `cosaFacciamo` | What we do cards: `events` with `title`, `description` |
+| `config.json` | `cosaFacciamo.events[].image` | Image per card (same order as `events` in the language files) |
+| `site.json` (+ EN) | `comeFacciamoComunita` | Community cards: `cards` with `title`, `date`, `details` |
+| `config.json` | `comeFacciamoComunita.cards[].image` | Image per community card (same order as `cards` in the language files) |
+| `config.json` | `comeFacciamoComunita.cards[].url` | Link per community card; opens in a new tab. Empty to keep the card non-clickable |
 | `config.json` | `social.links[].url` | Social URLs (in `site.json` / `site.en.json` only `label` per entry, **same order**) |
 | `config.json` | `joinTeam.url` | Application form; if empty the section is hidden |
 | `config.json` | `association.formUrl` | Membership form; if empty the section is hidden |
@@ -35,10 +39,20 @@ Save with **Commit changes** on `main`. If you add or remove entries (social, pa
 
 ### Example shapes (copy and adapt)
 
-**Past event** (inside `cosaFacciamo.events`):
+**What we do card** (inside `cosaFacciamo.events`; image in `config.json`):
 
 ```json
-{ "title": "Lightning workshop", "date": "2025-10-12", "description": "Intro to second-layer payments." }
+{ "title": "Events", "description": "Talks, workshops and panels open to all USI students." }
+```
+
+**Community card** (copy in `comeFacciamoComunita.cards`; image and `url` in `config.json`):
+
+```json
+{ "title": "Events", "date": "", "details": "Talks, workshops and panels open to all USI students." }
+```
+
+```json
+{ "image": "images/my-photo.jpg", "url": "https://example.com/events" }
 ```
 
 **Social link:** in `site.json` / `site.en.json` only the label; URL in `config.json` under the matching `social.links` entry (same index).
