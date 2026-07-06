@@ -6,8 +6,7 @@
     "logo": "images/pos_hub_logo.jpeg",
     "hero": {
       "sky": "images/sky.png",
-      "hillsLake": "images/hills+lake.png",
-      "trees": "images/trees.png"
+      "hillsLake": "images/hills+lake.png"
     }
   },
   "report": {
