@@ -36,12 +36,13 @@ const joinBtnClass =
     <div
       data-parallax
       data-speed="0.2"
-      class="flex flex-[5] items-center justify-center px-6 md:px-16"
+      class="flex flex-1 items-center justify-center px-6 md:px-16"
     >
       <div
         class:list={[
           "hero-copy pointer-events-auto flex w-full max-w-6xl flex-col items-center text-center text-white",
           showRegisterButton && "hero-copy--with-cta",
+          "hero-copy--with-stats",
         ]}
       >
         <h1 class="text-6xl font-medium uppercase leading-none tracking-tight text-white drop-shadow-xl md:text-8xl lg:text-9xl">
@@ -60,14 +61,11 @@ const joinBtnClass =
             </a>
           )
         }
+        <HeroStats site={site} />
       </div>
     </div>
 
-    <div class="flex flex-[3] items-center justify-center px-6 md:px-16">
-      <HeroStats site={site} />
-    </div>
-
-    <div class="pointer-events-auto shrink-0">
+    <div class="pointer-events-auto mt-auto shrink-0">
       <slot />
     </div>
   </div>
@@ -83,6 +81,14 @@ const joinBtnClass =
     --hero-below-title: 10.5rem;
   }
 
+  .hero-copy--with-stats {
+    --hero-below-title: 7.5rem;
+  }
+
+  .hero-copy--with-cta.hero-copy--with-stats {
+    --hero-below-title: 14.5rem;
+  }
+
   @media (min-width: 768px) {
     .hero-copy {
       --hero-below-title: 3.75rem;
@@ -90,6 +96,14 @@ const joinBtnClass =
 
     .hero-copy--with-cta {
       --hero-below-title: 11rem;
+    }
+
+    .hero-copy--with-stats {
+      --hero-below-title: 8rem;
+    }
+
+    .hero-copy--with-cta.hero-copy--with-stats {
+      --hero-below-title: 15.5rem;
     }
   }
 

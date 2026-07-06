@@ -9,15 +9,15 @@ const { site } = Astro.props;
 const { heroStats } = site;
 ---
 
-<div class="hero-stats pointer-events-auto mx-auto w-[75%]" data-hero-stats>
-  <ul class="grid grid-cols-3">
+<div class="hero-stats pointer-events-auto mx-auto mt-8 w-full sm:mt-10 sm:w-[75%]" data-hero-stats>
+  <ul class="grid grid-cols-3 gap-2 sm:gap-0">
     {heroStats.items.map((item) => (
-      <li class="flex flex-col items-center px-3 text-center sm:px-6">
-        <span class="text-xs font-medium tracking-wide text-white/60 sm:text-sm">
+      <li class="flex min-w-0 flex-col items-center px-1 text-center sm:px-6">
+        <span class="text-[0.65rem] font-medium leading-tight tracking-wide text-white/60 sm:text-sm">
           {item.label}
         </span>
         <span
-          class="hero-stats__value mt-2 text-3xl font-semibold tabular-nums leading-none text-white drop-shadow-lg sm:mt-3 sm:text-4xl md:text-5xl"
+          class="hero-stats__value mt-1.5 text-2xl font-semibold tabular-nums leading-none text-white drop-shadow-lg sm:mt-3 sm:text-4xl md:text-5xl"
           data-count-to={item.value}
           aria-hidden="true"
         >
