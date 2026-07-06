@@ -20,7 +20,7 @@ const joinBtnClass =
 
 <section
   id="hero"
-  class="relative flex min-h-[125svh] flex-col overflow-hidden"
+  class="relative flex min-h-[125svh] flex-col overflow-hidden md:min-h-[100svh]"
   aria-label={site.brand.title}
 >
   <div data-parallax data-speed="0.05" class="hero-layer z-[1]" aria-hidden="true">
@@ -36,15 +36,9 @@ const joinBtnClass =
     <div
       data-parallax
       data-speed="0.2"
-      class="flex flex-1 items-start justify-center px-6 pt-12 md:items-center md:px-16 md:pt-0"
+      class="pointer-events-none px-6 pt-12 md:px-16 md:pt-[30vh]"
     >
-      <div
-        class:list={[
-          "hero-copy pointer-events-auto flex w-full max-w-6xl flex-col items-center text-center text-white",
-          showRegisterButton && "hero-copy--with-cta",
-          "hero-copy--with-stats",
-        ]}
-      >
+      <div class="hero-copy pointer-events-auto flex w-full max-w-6xl flex-col items-center text-center text-white mx-auto">
         <h1 class="text-6xl font-medium uppercase leading-none tracking-tight text-white drop-shadow-xl md:text-8xl lg:text-9xl">
           {site.brand.title}
         </h1>
@@ -72,30 +66,6 @@ const joinBtnClass =
 </section>
 
 <style>
-  .hero-copy {
-    --hero-below-title: 0;
-    transform: none;
-  }
-
-  @media (min-width: 768px) {
-    .hero-copy {
-      --hero-below-title: 3.75rem;
-      transform: translateY(calc(var(--hero-below-title) / 2 + 0.75rem));
-    }
-
-    .hero-copy--with-cta {
-      --hero-below-title: 11rem;
-    }
-
-    .hero-copy--with-stats {
-      --hero-below-title: 8rem;
-    }
-
-    .hero-copy--with-cta.hero-copy--with-stats {
-      --hero-below-title: 15.5rem;
-    }
-  }
-
   .hero-layer {
     position: absolute;
     inset: -10% 0;
