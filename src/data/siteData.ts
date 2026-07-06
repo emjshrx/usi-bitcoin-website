@@ -31,6 +31,13 @@ export function mergeSite(locale: LocaleSite) {
   return {
     ...locale,
     brand: config.brand,
+    heroStats: {
+      items: [
+        { value: config.heroStats.events, label: locale.heroStats.events },
+        { value: config.heroStats.participants, label: locale.heroStats.participants },
+        { value: config.heroStats.teamMembers, label: locale.heroStats.teamMembers },
+      ],
+    },
     images: config.images,
     report: {
       ...locale.report,

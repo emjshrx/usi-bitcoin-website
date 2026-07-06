@@ -1,0 +1,88 @@
+---
+import type { SiteData } from "../data/siteData";
+
+interface Props {
+  site: SiteData;
+}
+
+const { site } = Astro.props;
+const { heroStats } = site;
+---
+
+<div class="hero-stats pointer-events-auto mx-auto w-[75%]" data-hero-stats>
+  <ul class="grid grid-cols-3">
+    {heroStats.items.map((item) => (
+      <li class="flex flex-col items-center px-3 text-center sm:px-6">
+        <span class="text-xs font-medium tracking-wide text-white/60 sm:text-sm">
+          {item.label}
+        </span>
+        <span
+          class="hero-stats__value mt-2 text-3xl font-semibold tabular-nums leading-none text-white drop-shadow-lg sm:mt-3 sm:text-4xl md:text-5xl"
+          data-count-to={item.value}
+          aria-hidden="true"
+        >
+          0
+        </span>
+        <span class="sr-only">{item.value}</span>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<script>
+  function animateCount(el: HTMLElement, target: number, duration: number) {
+    const start = performance.now();
+    function tick(now: number) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = String(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function initHeroStats() {
+    const root = document.querySelector("[data-hero-stats]");
+    if (!root) return;
+
+    const values = Array.from(
+      root.querySelectorAll<HTMLElement>("[data-count-to]"),
+    );
+    if (!values.length) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function run() {
+      values.forEach((el) => {
+        if (el.dataset.counted === "true") return;
+        el.dataset.counted = "true";
+        const target = Number(el.dataset.countTo);
+        if (!Number.isFinite(target)) return;
+        if (reducedMotion) {
+          el.textContent = String(target);
+        } else {
+          animateCount(el, target, 1800);
+        }
+      });
+    }
+
+    if (reducedMotion) {
+      run();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          run();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 },
+    );
+    observer.observe(root);
+  }
+
+  initHeroStats();
+  document.addEventListener("astro:page-load", initHeroStats);
+</script>

@@ -2,6 +2,11 @@
   "brand": {
     "title": "Bitcoin USI Club"
   },
+  "heroStats": {
+    "events": 20,
+    "participants": 300,
+    "teamMembers": 9
+  },
   "images": {
     "logo": "images/pos_hub_logo.jpeg",
     "hero": {
