@@ -36,7 +36,7 @@ const joinBtnClass =
     <div
       data-parallax
       data-speed="0.2"
-      class="flex flex-1 items-center justify-center px-6 md:px-16"
+      class="flex flex-1 items-start justify-center px-6 pt-6 md:items-center md:px-16 md:pt-0"
     >
       <div
         class:list={[
@@ -73,25 +73,14 @@ const joinBtnClass =
 
 <style>
   .hero-copy {
-    --hero-below-title: 3.5rem;
-    transform: translateY(calc(var(--hero-below-title) / 2 + 0.75rem));
-  }
-
-  .hero-copy--with-cta {
-    --hero-below-title: 10.5rem;
-  }
-
-  .hero-copy--with-stats {
-    --hero-below-title: 7.5rem;
-  }
-
-  .hero-copy--with-cta.hero-copy--with-stats {
-    --hero-below-title: 14.5rem;
+    --hero-below-title: 0;
+    transform: none;
   }
 
   @media (min-width: 768px) {
     .hero-copy {
       --hero-below-title: 3.75rem;
+      transform: translateY(calc(var(--hero-below-title) / 2 + 0.75rem));
     }
 
     .hero-copy--with-cta {
