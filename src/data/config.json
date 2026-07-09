@@ -44,7 +44,7 @@
   },
   "comeFacciamoComunita": {
     "cards": [
-      { "image": "images/placeholders/events.jpeg", "url": "https://example.com/community/events" },
+      { "image": "images/placeholders/events.jpeg", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7389324066517577728" },
       { "image": "images/placeholders/event-2.svg", "url": "https://example.com/community/articles" },
       { "image": "images/placeholders/interview2.jpeg", "url": "https://example.com/community/interviews" },
       { "image": "images/placeholders/event-4.svg", "url": "https://example.com/community/movie-night" }
