@@ -276,14 +276,14 @@ const missionWaysBackdropUrl = asset("/images/Gemini_Generated_Image_cxzycgcxzyc
       </div>
       <div class="pointer-events-none absolute inset-0 z-[1] bg-black/72" aria-hidden="true" />
 
-      <!-- WAYS WE DO COMMUNITY ────────────────────────────────────────────── -->
+      <!-- Beyond the classroom / Come facciamo comunità ─────────────────── -->
       {showComeFacciamoComunita && (
         <section class="relative z-[2] px-4 py-16 md:px-8 md:py-24">
           <div class="mx-auto max-w-6xl">
             <h2 class="mb-12 text-4xl font-black uppercase leading-tight tracking-tight text-white md:text-6xl">
-              {en
-                ? <><span>WAYS </span><span class="bg-white px-2 text-black">[WE DO]</span><span> COMMUNITY</span></>
-                : <><span>COME </span><span class="bg-white px-2 text-black">[FACCIAMO]</span><span> COMUNITÀ</span></>}
+              <span>{comeFacciamoComunita.sectionTitle.before}</span>
+              <span class="bg-white px-2 text-black">{comeFacciamoComunita.sectionTitle.highlight}</span>
+              <span>{comeFacciamoComunita.sectionTitle.after}</span>
             </h2>
             <div class="grid gap-5 sm:grid-cols-2">
               {comeFacciamoComunita.cards.map((card) => {

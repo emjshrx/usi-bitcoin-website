@@ -37,6 +37,11 @@
     ]
   },
   "comeFacciamoComunita": {
+    "sectionTitle": {
+      "before": "Beyond ",
+      "highlight": "[the]",
+      "after": " classroom"
+    },
     "cards": [
       {
         "title": "COMING SOON",
